@@ -6,7 +6,7 @@ namespace SportCenter.Views;
 
 public partial class MainWindow : Window
 {
-    private bool _isResizing = false;
+    public static event EventHandler? MainSourceInitialized;
 
     public MainWindow()
     {
@@ -14,6 +14,8 @@ public partial class MainWindow : Window
         TitleBar.MinimizeClicked += OnMinimizeClick;
         TitleBar.CloseClicked += OnCloseClick;
         TitleBar.TitleBarDragged += OnTitleBarDrag;
+
+        SourceInitialized += OnSourceInitialized!;
 
         InitializeComponent();
     }
@@ -24,6 +26,13 @@ public partial class MainWindow : Window
         TitleBar.MinimizeClicked -= OnMinimizeClick;
         TitleBar.CloseClicked -= OnCloseClick;
         TitleBar.TitleBarDragged -= OnTitleBarDrag;
+
+        SourceInitialized -= OnSourceInitialized!;
+    }
+
+    private static void OnSourceInitialized(object sender, EventArgs e)
+    {
+        MainSourceInitialized?.Invoke(sender, e);
     }
 
     #region TitleBar Methods
@@ -52,32 +61,4 @@ public partial class MainWindow : Window
     }
 
     #endregion TitleBar Methods
-
-    #region Resize Methods
-
-    private void ResizeGrid_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-        _isResizing = true;
-    }
-
-    private void ResizeGrid_OnMouseMove(object sender, MouseEventArgs e)
-    {
-        if (!_isResizing)
-        {
-            return;
-        }
-
-        double x = e.GetPosition(this).X;
-        if (x > 0)
-        {
-            Width = x;
-        }
-    }
-
-    private void ResizeGrid_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-    {
-        _isResizing = false;
-    }
-
-    #endregion Resize Methods
 }

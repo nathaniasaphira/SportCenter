@@ -10,7 +10,7 @@
 
     <Border Background="{DynamicResource BorderBrush}"
             CornerRadius="{StaticResource TitleBarCornerRadius}">
-        <DockPanel Name="TitleBarPanel"
+        <Grid Name="TitleBarPanel"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Stretch"
                    Background="Transparent"
@@ -29,10 +29,9 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        Margin="5">
-
                 <components:TitleBarButton x:Name="BtnMaximize"
                                            ButtonBackground="GreenYellow"
-                                           ButtonGeometry="{StaticResource IconWindowMax}"
+                                           ButtonGeometry="{StaticResource WindowMaxGeometry}"
                                            ButtonClicked="BtnMaximize_Click" />
 
                 <components:TitleBarButton x:Name="BtnMinimize"
@@ -45,7 +44,7 @@
                                            ButtonGeometry="{StaticResource IconClose}"
                                            ButtonClicked="BtnClose_Click" />
             </DockPanel>
-        </DockPanel>
+        </Grid>
     </Border>
 
 </UserControl>

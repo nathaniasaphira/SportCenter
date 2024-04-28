@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="SportCenter.Views.Components.ResizeArea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="1360">
+    <Grid>
+        <Rectangle x:Name="ResizeW" 
+                   VerticalAlignment="Stretch" 
+                   HorizontalAlignment="Left"
+                   Fill="Transparent" 
+                   Width="8" Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+
+        <Rectangle x:Name="ResizeN" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Stretch"
+                   Fill="Transparent" 
+                   Height="8" Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+
+        <Rectangle x:Name="ResizeE" 
+                   VerticalAlignment="Stretch" 
+                   HorizontalAlignment="Right"
+                   Fill="Transparent" 
+                   Width="8" Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+
+        <Rectangle x:Name="ResizeS" 
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Stretch"
+                   Fill="Transparent" 
+                   Height="8" Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+
+        <Rectangle x:Name="ResizeNW" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Left"
+                   Stroke="Transparent" 
+                   Width="26" Height="26"
+                   Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+
+        <Rectangle x:Name="ResizeNE" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Right"
+                   Stroke="Transparent" 
+                   Width="26" Height="26"
+                   Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+
+        <Rectangle x:Name="ResizeSE" 
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Right"
+                   Stroke="Transparent" 
+                   Width="26" Height="26"
+                   Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+
+        <Rectangle x:Name="ResizeSW" 
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left"
+                   Stroke="Transparent" 
+                   Width="26" Height="26"
+                   Margin="0" 
+                   MouseEnter="DisplayResizeCursor"
+                   MouseLeave="ResetCursor" 
+                   PreviewMouseLeftButtonDown="Resize" />
+    </Grid>
+</UserControl>

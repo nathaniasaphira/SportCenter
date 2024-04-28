@@ -21,9 +21,11 @@
                                   BlurRadius="20"/>
             </Border.Effect>
 
-            <components:TitleBar Height="50" VerticalAlignment="Top"/>
+            <Grid>
+                <components:TitleBar Height="50" VerticalAlignment="Top"/>
+                <components:ResizeArea />
+            </Grid>
         </Border>
-
     </Grid>
 
 </Window>

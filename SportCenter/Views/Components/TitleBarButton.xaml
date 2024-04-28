@@ -15,19 +15,18 @@
         <Button Name="Button"
                 BorderBrush="Transparent"
                 Background="Transparent"
-                Width="25" Height="25"
+                Width="30" Height="30"
                 Padding="7"
                 Click="Button_OnClick">
 
             <Viewbox Stretch="UniformToFill">
                 <Path Stroke="{DynamicResource ReverseTextBrush}"
-                      StrokeThickness="2"
+                      StrokeThickness="1"
                       Data="{Binding ButtonGeometry, 
                              RelativeSource={RelativeSource AncestorType=UserControl}}" />
             </Viewbox>
 
         </Button>
-        <!-- hc:IconElement.Geometry="{Binding ButtonGeometry, RelativeSource={RelativeSource AncestorType=UserControl}}" -->
     </Border>
 
 </UserControl>
