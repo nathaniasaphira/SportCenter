@@ -29,15 +29,15 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        Margin="5">
-                <components:TitleBarButton x:Name="BtnMaximize"
-                                           ButtonBackground="GreenYellow"
-                                           ButtonGeometry="{StaticResource WindowMaxGeometry}"
-                                           ButtonClicked="BtnMaximize_Click" />
-
                 <components:TitleBarButton x:Name="BtnMinimize"
                                            ButtonBackground="Yellow"
                                            ButtonGeometry="{StaticResource IconMinimize}"
                                            ButtonClicked="BtnMinimize_Click" />
+
+                <components:TitleBarButton x:Name="BtnMaximize"
+                                           ButtonBackground="GreenYellow"
+                                           ButtonGeometry="{StaticResource WindowMaxGeometry}"
+                                           ButtonClicked="BtnMaximize_Click" />
 
                 <components:TitleBarButton x:Name="BtnClose"
                                            ButtonBackground="LightCoral"
