@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="SportCenter.Views.Components.TitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:resx="clr-namespace:SportCenter.Properties"
+             xmlns:components="clr-namespace:SportCenter.Views.Components"
+             mc:Ignorable="d"
+             d:DesignHeight="50" d:DesignWidth="1360">
+
+    <Border Background="{DynamicResource BorderBrush}"
+            CornerRadius="{StaticResource TitleBarCornerRadius}">
+        <DockPanel Name="TitleBarPanel"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Stretch"
+                   Background="Transparent"
+                   MouseLeftButtonDown="TitleBar_OnMouseLeftButtonDown">
+
+            <TextBlock Name="TitleBarText"
+                       Text="{x:Static resx:Resources.AppTitle}"
+                       Foreground="{DynamicResource PrimaryTextBrush}"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="5" />
+
+            <DockPanel Name="TitleBarRight"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Margin="5">
+
+                <components:TitleBarButton x:Name="BtnMaximize"
+                                           ButtonBackground="GreenYellow"
+                                           ButtonGeometry="{StaticResource IconWindowMax}"
+                                           ButtonClicked="BtnMaximize_Click" />
+
+                <components:TitleBarButton x:Name="BtnMinimize"
+                                           ButtonBackground="Yellow"
+                                           ButtonGeometry="{StaticResource IconMinimize}"
+                                           ButtonClicked="BtnMinimize_Click" />
+
+                <components:TitleBarButton x:Name="BtnClose"
+                                           ButtonBackground="LightCoral"
+                                           ButtonGeometry="{StaticResource IconClose}"
+                                           ButtonClicked="BtnClose_Click" />
+            </DockPanel>
+        </DockPanel>
+    </Border>
+
+</UserControl>

@@ -1,9 +1,18 @@
 ﻿<Application x:Class="SportCenter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SportCenter"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              StartupUri="/Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionaries/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <CornerRadius x:Key="WindowCornerRadius">15</CornerRadius>
+            <CornerRadius x:Key="TitleBarCornerRadius">15, 15, 0, 0</CornerRadius>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
