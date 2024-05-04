@@ -21,7 +21,8 @@
 
             <Viewbox Stretch="UniformToFill">
                 <Path Stroke="{DynamicResource ReverseTextBrush}"
-                      StrokeThickness="1"
+                      StrokeThickness="2"
+                      Opacity="0.5"
                       Data="{Binding ButtonGeometry, 
                              RelativeSource={RelativeSource AncestorType=UserControl}}" />
             </Viewbox>

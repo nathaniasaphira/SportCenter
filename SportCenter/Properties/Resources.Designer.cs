@@ -68,5 +68,23 @@ namespace SportCenter.Properties {
                 return ResourceManager.GetString("AppTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goods Transaction.
+        /// </summary>
+        public static string GoodsTransaction {
+            get {
+                return ResourceManager.GetString("GoodsTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stock.
+        /// </summary>
+        public static string Stock {
+            get {
+                return ResourceManager.GetString("Stock", resourceCulture);
+            }
+        }
     }
 }

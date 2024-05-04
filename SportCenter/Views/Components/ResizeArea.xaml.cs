@@ -1,15 +1,19 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using SportCenter.Utils;
 
 namespace SportCenter.Views.Components;
 
 public partial class ResizeArea : UserControl
 {
+    public static event EventHandler? OnResize;
+
     private enum ResizeDirection
     {
         Left = 61441,
@@ -28,9 +32,9 @@ public partial class ResizeArea : UserControl
 
     public ResizeArea()
     {
-        MainWindow.MainSourceInitialized += Window_SourceInitialized!;
-
         InitializeComponent();
+
+        MainWindow.MainSourceInitialized += Window_SourceInitialized!;
     }
 
     ~ResizeArea()
@@ -71,10 +75,13 @@ public partial class ResizeArea : UserControl
             _ => (Cursor, default)
         };
 
-        if (Cursor != null)
+        if (Cursor == null)
         {
-            ResizeWindow(direction);
+            return;
         }
+
+        ResizeWindow(direction);
+        OnResize?.Invoke(this, EventArgs.Empty);
     }
 
     private void ResizeWindow(ResizeDirection direction)

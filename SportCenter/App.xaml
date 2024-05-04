@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <Thickness x:Key="WindowMargin">20</Thickness>
             <CornerRadius x:Key="WindowCornerRadius">15</CornerRadius>
             <CornerRadius x:Key="TitleBarCornerRadius">15, 15, 0, 0</CornerRadius>
         </ResourceDictionary>

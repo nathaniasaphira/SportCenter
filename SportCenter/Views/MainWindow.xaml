@@ -8,24 +8,39 @@
         AllowsTransparency="True"
         Background="Transparent"
         mc:Ignorable="d"
-        Title="Sport Center" Width="1360" Height="768"
-        ResizeMode="CanResize">
-
+        Title="{DynamicResource AppTitle}" 
+        Width="1360" Height="768"
+        ResizeMode="CanResize"
+        Loaded="MainWindow_Loaded"
+        SizeChanged="MainWindow_OnSizeChanged"
+        SourceInitialized="MainWindow_OnSourceInitialized">
     <Grid>
-        <Border Background="{DynamicResource BackgroundBrush}"
+        <Border x:Name="OuterBorder"
+                Background="{DynamicResource BackgroundBrush}"
                 CornerRadius="{StaticResource WindowCornerRadius}"
-                Margin="20">
+                Margin="{DynamicResource WindowMargin}">
             <Border.Effect>
-                <DropShadowEffect Color="Black" Direction="320" 
-                                  ShadowDepth="10" Opacity="0.5" 
-                                  BlurRadius="20"/>
+                <DropShadowEffect Color="Black" Direction="320"
+                                  ShadowDepth="10" Opacity="0.5"
+                                  BlurRadius="20" />
             </Border.Effect>
 
             <Grid>
-                <components:TitleBar Height="50" VerticalAlignment="Top"/>
+                <components:TitleBar Height="50" VerticalAlignment="Top" />
                 <components:ResizeArea />
             </Grid>
         </Border>
     </Grid>
 
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" 
+                      CornerRadius="0" 
+                      CaptionHeight="0" 
+                      UseAeroCaptionButtons="False" 
+                      ResizeBorderThickness="7" />
+    </WindowChrome.WindowChrome>
+
+    <Window.RenderTransform>
+        <ScaleTransform x:Name="RenderScale" ScaleX="1" ScaleY="1" />
+    </Window.RenderTransform>
 </Window>

@@ -6,7 +6,8 @@
              xmlns:resx="clr-namespace:SportCenter.Properties"
              xmlns:components="clr-namespace:SportCenter.Views.Components"
              mc:Ignorable="d"
-             d:DesignHeight="50" d:DesignWidth="1360">
+             d:DesignHeight="50" d:DesignWidth="1360"
+             MouseMove="TitleBar_OnMouseMove">
 
     <Border Background="{DynamicResource BorderBrush}"
             CornerRadius="{StaticResource TitleBarCornerRadius}">
@@ -37,6 +38,11 @@
                 <components:TitleBarButton x:Name="BtnMaximize"
                                            ButtonBackground="GreenYellow"
                                            ButtonGeometry="{StaticResource WindowMaxGeometry}"
+                                           ButtonClicked="BtnMaximize_Click" />
+
+                <components:TitleBarButton x:Name="BtnRestore"
+                                           ButtonBackground="GreenYellow"
+                                           ButtonGeometry="{StaticResource WindowRestoreGeometry}"
                                            ButtonClicked="BtnMaximize_Click" />
 
                 <components:TitleBarButton x:Name="BtnClose"
