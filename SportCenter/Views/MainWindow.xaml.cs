@@ -33,7 +33,7 @@ public partial class MainWindow : Window
         MaximizeFired += MainWindow_MaximizeFired;
     }
 
-    public void Dispose()
+    ~MainWindow()
     {
         TitleBar.MaximizeClicked -= OnMaximizeClick;
         TitleBar.MinimizeClicked -= OnMinimizeClick;

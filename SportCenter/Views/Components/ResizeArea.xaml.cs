@@ -35,16 +35,23 @@ public partial class ResizeArea : UserControl
         InitializeComponent();
 
         MainWindow.MainSourceInitialized += Window_SourceInitialized!;
+        MainWindow.MaximizeFired += Window_MaximizeFired!;
     }
 
     ~ResizeArea()
     {
         MainWindow.MainSourceInitialized -= Window_SourceInitialized!;
+        MainWindow.MaximizeFired -= Window_MaximizeFired!;
     }
 
     private void Window_SourceInitialized(object sender, EventArgs e)
     {
         _hWndSource = PresentationSource.FromVisual((Visual) sender) as HwndSource;
+    }
+
+    private void Window_MaximizeFired(object sender, WindowState e)
+    {
+        IsEnabled = e is not WindowState.Maximized;
     }
 
     private void ResetCursor(object sender, MouseEventArgs e)
