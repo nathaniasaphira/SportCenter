@@ -60,7 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Images\blur-background-light.jpg" />
     <Resource Include="Assets\Images\tennis-icon.svg" />
   </ItemGroup>
 

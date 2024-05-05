@@ -6,24 +6,26 @@
              xmlns:svgc="https://github.com/dotnetprojects/SVGImage"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="350">
+
     <Button Name="Button"
             Style="{StaticResource HomeButtonPrimary}"
             MinWidth="150" MinHeight="225"
             Margin="20"
-            Width="300" Height="450">
+            Width="{DynamicResource HomeButtonPrimaryWidth}"
+            Height="{DynamicResource HomeButtonPrimaryHeight}">
         <StackPanel VerticalAlignment="Center">
 
             <Grid Margin="10">
                 <svgc:SVGImage Source="{Binding SvgImageSource,
                     RelativeSource={RelativeSource AncestorType=UserControl}}"
-                               RenderTransformOrigin="0.5,0.5" 
-                               VerticalContentAlignment="Center" 
-                               HorizontalContentAlignment="Center"/>
+                               RenderTransformOrigin="0.5,0.5"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center" />
 
                 <Image Source="{Binding ImageSource,
                     RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       RenderTransformOrigin="0.5,0.5" 
-                       VerticalAlignment="Center" 
+                       RenderTransformOrigin="0.5,0.5"
+                       VerticalAlignment="Center"
                        HorizontalAlignment="Center" />
             </Grid>
 
@@ -32,7 +34,7 @@
                             RelativeSource={RelativeSource AncestorType=UserControl}}"
                        FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
                        FontSize="{DynamicResource ButtonPrimaryFontSize}" />
-
         </StackPanel>
     </Button>
+
 </UserControl>

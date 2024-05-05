@@ -62,4 +62,38 @@ public static class ScreenFinder
 
         return values.Count <= 0 ? Screen.PrimaryScreen : values[0].Item2;
     }
+    
+    public static Point? FindTaskbarLocation(Window window)
+    {
+        Point mousePosition = Mouse.GetPosition(window);
+        Point screenPoint = window.PointToScreen(mousePosition);
+        Screen? screenWithMouse = Screen.AllScreens.FirstOrDefault(screen => screen.Bounds.Contains(screenPoint));
+
+        if (screenWithMouse == null)
+        {
+            return null;
+        }
+
+        if (screenWithMouse.WorkingArea.Bottom < screenWithMouse.Bounds.Bottom)
+        {
+            return new Point(screenWithMouse.WorkingArea.Left, screenWithMouse.WorkingArea.Bottom);
+        }
+        
+        if (screenWithMouse.WorkingArea.Top > screenWithMouse.Bounds.Top)
+        {
+            return new Point(screenWithMouse.WorkingArea.Left, screenWithMouse.WorkingArea.Top);
+        }
+
+        if (screenWithMouse.WorkingArea.Left > screenWithMouse.Bounds.Left)
+        {
+            return new Point(screenWithMouse.WorkingArea.Left, screenWithMouse.WorkingArea.Top);
+        }
+
+        if (screenWithMouse.WorkingArea.Right < screenWithMouse.Bounds.Right)
+        {
+            return new Point(screenWithMouse.WorkingArea.Right, screenWithMouse.WorkingArea.Top);
+        }
+
+        return null;
+    }
 }

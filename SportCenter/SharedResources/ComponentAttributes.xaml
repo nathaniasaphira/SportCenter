@@ -9,4 +9,7 @@
 
     <CornerRadius x:Key="ButtonCornerRadius">10</CornerRadius>
     <system:Double x:Key="ButtonPrimaryFontSize">30</system:Double>
+
+    <system:Double x:Key="HomeButtonPrimaryWidth">300</system:Double>
+    <system:Double x:Key="HomeButtonPrimaryHeight">450</system:Double>
 </ResourceDictionary>
