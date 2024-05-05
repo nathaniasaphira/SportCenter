@@ -16,7 +16,8 @@
                 BorderBrush="Transparent"
                 Background="Transparent"
                 Width="30" Height="30"
-                Padding="7"
+                Padding="{Binding ButtonPadding, 
+                    RelativeSource={RelativeSource AncestorType=UserControl}}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Click="Button_OnClick">
@@ -24,7 +25,8 @@
             <Viewbox Stretch="UniformToFill">
                 <Path Stroke="{DynamicResource ReverseTextBrush}"
                       Opacity="0.6"
-                      StrokeThickness="1.3"
+                      StrokeThickness="{Binding IconThickness, 
+                             RelativeSource={RelativeSource AncestorType=UserControl}}"
                       Data="{Binding ButtonGeometry, 
                              RelativeSource={RelativeSource AncestorType=UserControl}}" />
             </Viewbox>

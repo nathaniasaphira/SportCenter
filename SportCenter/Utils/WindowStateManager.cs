@@ -62,7 +62,7 @@ public static class WindowStateManager
         return percentage;
     }
 
-    public static void SetWindowSizeToNormal(Window window, bool useMouseLocation = false)
+    public static void SetWindowSizeToNormal(Window window, bool isDragging = false)
     {
         IsMaximized = false;
 
@@ -71,7 +71,7 @@ public static class WindowStateManager
         SetWindowWidth(window);
         SetWindowHeight(window);
 
-        if (useMouseLocation)
+        if (isDragging)
         {
             Top = MouseHelper.MousePosition.Y - 40;
 

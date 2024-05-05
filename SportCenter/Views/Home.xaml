@@ -2,15 +2,18 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:resx="clr-namespace:SportCenter.Properties"
       xmlns:local="clr-namespace:SportCenter.Views"
       xmlns:components="clr-namespace:SportCenter.Views.Components"
       mc:Ignorable="d" 
       d:DesignWidth="1360" d:DesignHeight="768"
-      Title="Home">
+      Title="{x:Static resx:Resources.Home}" >
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <components:HomeButtonPrimary />
-        <components:HomeButtonPrimary />
+        <components:HomeButtonPrimary ButtonText="Hello, World!" 
+                                      SvgImageSource="SportCenter;component//Assets/Images/tennis-icon.svg" />
+        <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.GoodsTransaction}" 
+                                      SvgImageSource="SportCenter;component//Assets/Images/tennis-icon.svg" />
     </DockPanel>
 </Page>

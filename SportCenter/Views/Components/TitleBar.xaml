@@ -22,8 +22,10 @@
             <TextBlock Name="TitleBarText"
                        Text="{x:Static resx:Resources.AppTitle}"
                        Foreground="{DynamicResource PrimaryTextBrush}"
-                       FontSize="18"
-                       FontWeight="Bold"
+                       FontSize="14"
+                       FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
+                       FontWeight="Light"
+                       Opacity="0.7"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Margin="5" />
@@ -34,21 +36,29 @@
                        Margin="5">
                 <components:TitleBarButton x:Name="BtnMinimize"
                                            ButtonBackground="#FFBD44"
+                                           ButtonPadding="7, 4, 7, 12"
                                            ButtonGeometry="{StaticResource IconMinimize}"
+                                           IconThickness="1"
                                            ButtonClicked="BtnMinimize_Click" />
 
                 <components:TitleBarButton x:Name="BtnMaximize"
                                            ButtonBackground="#00CA4E"
-                                           ButtonGeometry="{StaticResource WindowMaxGeometry}"
+                                           ButtonPadding="4, 5, 5, 6"
+                                           ButtonGeometry="{StaticResource FullScreenGeometry}"
+                                           IconThickness="50"
                                            ButtonClicked="BtnMaximize_Click" />
 
                 <components:TitleBarButton x:Name="BtnRestore"
                                            ButtonBackground="#00CA4E"
-                                           ButtonGeometry="{StaticResource WindowRestoreGeometry}"
+                                           ButtonPadding="6, 6.5, 5, 5.5"
+                                           ButtonGeometry="{StaticResource FullScreenReturnGeometry}"
+                                           IconThickness="6"
                                            ButtonClicked="BtnMaximize_Click" />
 
                 <components:TitleBarButton x:Name="BtnClose"
                                            ButtonBackground="#FF605C"
+                                           IconThickness="2"
+                                           ButtonPadding="6, 7, 7, 7"
                                            ButtonGeometry="{StaticResource IconClose}"
                                            ButtonClicked="BtnClose_Click" />
             </DockPanel>

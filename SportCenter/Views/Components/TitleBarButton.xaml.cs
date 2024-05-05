@@ -18,6 +18,16 @@ public partial class TitleBarButton : UserControl
         set => SetValue(ButtonBackgroundProperty, value);
     }
 
+    public static readonly DependencyProperty ButtonPaddingProperty =
+        DependencyProperty.Register(nameof(ButtonPadding), typeof(Thickness), typeof(TitleBarButton),
+                       new PropertyMetadata(new Thickness(7)));
+
+    public Thickness ButtonPadding
+    {
+        get => (Thickness)GetValue(ButtonPaddingProperty);
+        set => SetValue(ButtonPaddingProperty, value);
+    }
+
     public static readonly DependencyProperty ButtonGeometryProperty =
         DependencyProperty.Register(nameof(ButtonGeometry), typeof(Geometry), typeof(TitleBarButton),
             new PropertyMetadata(null));
@@ -26,6 +36,16 @@ public partial class TitleBarButton : UserControl
     {
         get => (Geometry)GetValue(ButtonGeometryProperty);
         set => SetValue(ButtonGeometryProperty, value);
+    }
+
+    public static readonly DependencyProperty IconThicknessProperty =
+        DependencyProperty.Register(nameof(IconThickness), typeof(double), typeof(TitleBarButton),
+                       new PropertyMetadata(1.3));
+
+    public double IconThickness
+    {
+        get => (double)GetValue(IconThicknessProperty);
+        set => SetValue(IconThicknessProperty, value);
     }
 
     public TitleBarButton()

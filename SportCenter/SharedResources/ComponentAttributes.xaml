@@ -5,8 +5,8 @@
     <system:Double x:Key="ResizeAreaSize">4</system:Double>
 
     <CornerRadius x:Key="WindowCornerRadius">12</CornerRadius>
-    <CornerRadius x:Key="TitleBarCornerRadius">15, 15, 0, 0</CornerRadius>
+    <CornerRadius x:Key="TitleBarCornerRadius">12, 12, 0, 0</CornerRadius>
 
     <CornerRadius x:Key="ButtonCornerRadius">10</CornerRadius>
-    <system:Double x:Key="ButtonPrimaryFontSize">18</system:Double>
+    <system:Double x:Key="ButtonPrimaryFontSize">30</system:Double>
 </ResourceDictionary>

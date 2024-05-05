@@ -3,6 +3,7 @@ using SportCenter.Utils;
 using SportCenter.Views.Components;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using WpfScreenHelper;
 
@@ -169,7 +170,7 @@ public partial class MainWindow : Window
         {
             WindowState = WindowState.Normal;
 
-            WindowStateManager.SetWindowSizeToNormal(this, true);
+            WindowStateManager.SetWindowSizeToNormal(this);
             MaximizeFired?.Invoke(sender, WindowState.Normal);
 
             return;

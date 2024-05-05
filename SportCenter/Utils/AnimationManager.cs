@@ -21,13 +21,21 @@ public static class AnimationManager
     }
 
     public static void AnimateShrinkFadeOut(Window window, ScaleTransform windowRenderScale,
-        DependencyProperty opacityProperty, double minScale = 0.9)
+        DependencyProperty opacityProperty, Task? onComplete = null, double minScale = 0.9)
     {
         window.RenderTransformOrigin = new Point(0.5, 0.5);
 
         var scaleXAnimation = new DoubleAnimation(1, minScale, TimeSpan.FromSeconds(0.1));
         var scaleYAnimation = new DoubleAnimation(1, minScale, TimeSpan.FromSeconds(0.1));
         var opacityAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.1));
+
+        if (onComplete != null)
+        {
+            opacityAnimation.Completed += (_, _) =>
+            {
+                onComplete.Start();
+            };
+        }
 
         windowRenderScale.BeginAnimation(ScaleTransform.ScaleXProperty, scaleXAnimation);
         windowRenderScale.BeginAnimation(ScaleTransform.ScaleYProperty, scaleYAnimation);
@@ -73,5 +81,4 @@ public static class AnimationManager
         window.BeginAnimation(Window.LeftProperty, translateXAnimation);
         window.BeginAnimation(Window.TopProperty, translateYAnimation);
     }
-
 }
