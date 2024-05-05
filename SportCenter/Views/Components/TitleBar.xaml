@@ -9,13 +9,15 @@
              d:DesignHeight="50" d:DesignWidth="1360"
              MouseMove="TitleBar_OnMouseMove">
 
-    <Border Background="{DynamicResource BorderBrush}"
+    <Border Name="TitleBarBorder"
+            Background="{DynamicResource RegionBrush}"
             CornerRadius="{StaticResource TitleBarCornerRadius}">
+
         <Grid Name="TitleBarPanel"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Stretch"
-                   Background="Transparent"
-                   MouseLeftButtonDown="TitleBar_OnMouseLeftButtonDown">
+              VerticalAlignment="Top"
+              HorizontalAlignment="Stretch"
+              Background="Transparent"
+              MouseLeftButtonDown="TitleBar_OnMouseLeftButtonDown">
 
             <TextBlock Name="TitleBarText"
                        Text="{x:Static resx:Resources.AppTitle}"
@@ -31,26 +33,28 @@
                        HorizontalAlignment="Right"
                        Margin="5">
                 <components:TitleBarButton x:Name="BtnMinimize"
-                                           ButtonBackground="Yellow"
+                                           ButtonBackground="#FFBD44"
                                            ButtonGeometry="{StaticResource IconMinimize}"
                                            ButtonClicked="BtnMinimize_Click" />
 
                 <components:TitleBarButton x:Name="BtnMaximize"
-                                           ButtonBackground="GreenYellow"
+                                           ButtonBackground="#00CA4E"
                                            ButtonGeometry="{StaticResource WindowMaxGeometry}"
                                            ButtonClicked="BtnMaximize_Click" />
 
                 <components:TitleBarButton x:Name="BtnRestore"
-                                           ButtonBackground="GreenYellow"
+                                           ButtonBackground="#00CA4E"
                                            ButtonGeometry="{StaticResource WindowRestoreGeometry}"
                                            ButtonClicked="BtnMaximize_Click" />
 
                 <components:TitleBarButton x:Name="BtnClose"
-                                           ButtonBackground="LightCoral"
+                                           ButtonBackground="#FF605C"
                                            ButtonGeometry="{StaticResource IconClose}"
                                            ButtonClicked="BtnClose_Click" />
             </DockPanel>
+
         </Grid>
+
     </Border>
 
 </UserControl>

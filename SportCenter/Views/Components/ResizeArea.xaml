@@ -1,85 +1,121 @@
 ﻿<UserControl x:Class="SportCenter.Views.Components.ResizeArea"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="1360">
     <Grid>
-        <Rectangle x:Name="ResizeW" 
-                   VerticalAlignment="Stretch" 
+        <Rectangle x:Name="ResizeW"
+                   VerticalAlignment="Stretch"
                    HorizontalAlignment="Left"
-                   Fill="Transparent" 
-                   Width="8" Margin="0" 
+                   Fill="Transparent"
+                   Width="{DynamicResource ResizeAreaSize}"
+                   Margin="-2, 10, 0, 10"
                    MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
+                   MouseLeave="ResetCursor"
                    PreviewMouseLeftButtonDown="Resize" />
 
-        <Rectangle x:Name="ResizeN" 
-                   VerticalAlignment="Top" 
+        <Rectangle x:Name="ResizeN"
+                   VerticalAlignment="Top"
                    HorizontalAlignment="Stretch"
-                   Fill="Transparent" 
-                   Height="8" Margin="0" 
+                   Fill="Transparent"
+                   Height="{DynamicResource ResizeAreaSize}" 
+                   Margin="10, -2, 10, 0"
                    MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
+                   MouseLeave="ResetCursor"
                    PreviewMouseLeftButtonDown="Resize" />
 
-        <Rectangle x:Name="ResizeE" 
-                   VerticalAlignment="Stretch" 
+        <Rectangle x:Name="ResizeE"
+                   VerticalAlignment="Stretch"
                    HorizontalAlignment="Right"
-                   Fill="Transparent" 
-                   Width="8" Margin="0" 
+                   Fill="Transparent"
+                   Width="{DynamicResource ResizeAreaSize}" 
+                   Margin="0, 10, -2, 10"
                    MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
+                   MouseLeave="ResetCursor"
                    PreviewMouseLeftButtonDown="Resize" />
 
-        <Rectangle x:Name="ResizeS" 
-                   VerticalAlignment="Bottom" 
+        <Rectangle x:Name="ResizeS"
+                   VerticalAlignment="Bottom"
                    HorizontalAlignment="Stretch"
-                   Fill="Transparent" 
-                   Height="8" Margin="0" 
+                   Fill="Transparent"
+                   Height="{DynamicResource ResizeAreaSize}"
+                   Margin="10, 0, 10, -2"
                    MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
+                   MouseLeave="ResetCursor"
                    PreviewMouseLeftButtonDown="Resize" />
 
-        <Rectangle x:Name="ResizeNW" 
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left"
-                   Stroke="Transparent" 
-                   Width="26" Height="26"
-                   Margin="0" 
-                   MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
-                   PreviewMouseLeftButtonDown="Resize" />
+        <Path x:Name="ResizeNW" 
+              VerticalAlignment="Top" 
+              HorizontalAlignment="Left"
+              Stroke="Transparent" 
+              StrokeThickness="{DynamicResource ResizeAreaSize}" 
+              Margin="0" 
+              MouseEnter="DisplayResizeCursor" 
+              MouseLeave="ResetCursor" 
+              PreviewMouseLeftButtonDown="Resize">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="0,10">
+                        <QuadraticBezierSegment Point1="0,0" Point2="10,0" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
 
-        <Rectangle x:Name="ResizeNE" 
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Right"
-                   Stroke="Transparent" 
-                   Width="26" Height="26"
-                   Margin="0" 
-                   MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
-                   PreviewMouseLeftButtonDown="Resize" />
+        <Path x:Name="ResizeNE"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Right"
+              Stroke="Transparent"
+              StrokeThickness="{DynamicResource ResizeAreaSize}"
+              Margin="0,0,-2,0"
+              MouseEnter="DisplayResizeCursor"
+              MouseLeave="ResetCursor"
+              PreviewMouseLeftButtonDown="Resize">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="0,0">
+                        <QuadraticBezierSegment Point1="10,0" Point2="10,10" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
 
-        <Rectangle x:Name="ResizeSE" 
-                   VerticalAlignment="Bottom" 
-                   HorizontalAlignment="Right"
-                   Stroke="Transparent" 
-                   Width="26" Height="26"
-                   Margin="0" 
-                   MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
-                   PreviewMouseLeftButtonDown="Resize" />
+        <Path x:Name="ResizeSE"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Right"
+              Stroke="Transparent"
+              StrokeThickness="{DynamicResource ResizeAreaSize}"
+              Margin="0,0,-2,-2"
+              MouseEnter="DisplayResizeCursor"
+              MouseLeave="ResetCursor"
+              PreviewMouseLeftButtonDown="Resize">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="10,0">
+                        <QuadraticBezierSegment Point1="10,10" Point2="0,10" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
 
-        <Rectangle x:Name="ResizeSW" 
-                   VerticalAlignment="Bottom" 
-                   HorizontalAlignment="Left"
-                   Stroke="Transparent" 
-                   Width="26" Height="26"
-                   Margin="0" 
-                   MouseEnter="DisplayResizeCursor"
-                   MouseLeave="ResetCursor" 
-                   PreviewMouseLeftButtonDown="Resize" />
+        <Path x:Name="ResizeSW"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Left"
+              Stroke="Transparent"
+              StrokeThickness="{DynamicResource ResizeAreaSize}"
+              Margin="0,0,0,-2"
+              MouseEnter="DisplayResizeCursor"
+              MouseLeave="ResetCursor"
+              PreviewMouseLeftButtonDown="Resize">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="0,0">
+                        <QuadraticBezierSegment Point1="0,10" Point2="10,10" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
     </Grid>
 </UserControl>

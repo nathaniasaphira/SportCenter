@@ -12,22 +12,64 @@ public partial class TitleBar : UserControl
     public static event RoutedEventHandler? CloseClicked;
     public static event MouseEventHandler? TitleBarDragged;
 
+    private const string DefaultCornerRadiusResource = "TitleBarCornerRadius";
     private Point? _initialMousePosition;
 
     public TitleBar()
     {
         InitializeComponent();
 
-        MainWindow.MaximizeFired += (_, _) => ToggleMaximizeVisibility(WindowStateManager.IsMaximized);
+        MainWindow.MaximizeFired += Window_MaximizeFired;
 
-        BtnRestore.Visibility = Visibility.Collapsed;
+        ToggleMaximizeVisibility(WindowStateManager.IsMaximized);
     }
 
-    private void ToggleMaximizeVisibility(bool isMaximized)
+    private void Dispose(bool disposing)
     {
-        BtnRestore.Visibility = isMaximized ? Visibility.Visible : Visibility.Collapsed;
-        BtnMaximize.Visibility = isMaximized ? Visibility.Collapsed : Visibility.Visible;
+        if (!disposing)
+        {
+            return;
+        }
+
+        MainWindow.MaximizeFired -= Window_MaximizeFired;
     }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    ~TitleBar()
+    {
+        Dispose(false);
+    }
+
+    #region Event Handlers
+
+    private void Window_MaximizeFired(object? sender, WindowState e)
+    {
+        SwitchTitleBarCornerState(e is WindowState.Maximized);
+        ToggleMaximizeVisibility(e is WindowState.Maximized);
+    }
+
+    private void SwitchTitleBarCornerState(bool maximized)
+    {
+        TitleBarBorder.CornerRadius = maximized 
+            ? new CornerRadius(0) 
+            : (CornerRadius)FindResource(DefaultCornerRadiusResource);
+    }
+
+    private void ToggleMaximizeVisibility(bool maximized)
+    {
+        BtnRestore.Visibility = maximized 
+            ? Visibility.Visible : Visibility.Collapsed;
+
+        BtnMaximize.Visibility = maximized 
+            ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    #endregion Event Handlers
 
     #region Button Callbacks
 

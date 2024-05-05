@@ -22,6 +22,8 @@ public partial class MainWindow : Window
         Interval = TimeSpan.FromSeconds(CloseDurationSeconds)
     };
 
+    #region Constructor and Destructor
+
     public MainWindow()
     {
         InitializeComponent();
@@ -35,14 +37,30 @@ public partial class MainWindow : Window
 
     ~MainWindow()
     {
+        Dispose(false);
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposing)
+        {
+            return;
+        }
+
         TitleBar.MaximizeClicked -= OnMaximizeClick;
         TitleBar.MinimizeClicked -= OnMinimizeClick;
         TitleBar.CloseClicked -= OnCloseClick;
         TitleBar.TitleBarDragged -= OnTitleBarDrag;
         MaximizeFired -= MainWindow_MaximizeFired;
-
-        GC.SuppressFinalize(this);
     }
+
+    #endregion Constructor and Destructor
 
     #region Window Events
 
@@ -89,7 +107,9 @@ public partial class MainWindow : Window
     private void MainWindow_MaximizeFired(object? sender, WindowState e)
     {
         AnimationManager.AnimateMaximizeWindow(this, RenderScale, OpacityProperty);
-        ResizeMode = e is WindowState.Maximized ? ResizeMode.NoResize : ResizeMode.CanResize;
+
+        bool disableResize = e is WindowState.Maximized;
+        ResizeMode = disableResize ? ResizeMode.NoResize : ResizeMode.CanResize;
     }
 
     protected override void OnClosing(CancelEventArgs e)
@@ -161,7 +181,10 @@ public partial class MainWindow : Window
         MaximizeFired?.Invoke(sender, WindowState.Maximized);
     }
 
-    private void OnMinimizeClick(object? sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+    private void OnMinimizeClick(object? sender, RoutedEventArgs e)
+    {
+        SystemCommands.MinimizeWindow(this);
+    }
 
     private void OnCloseClick(object? sender, RoutedEventArgs e) => Close();
 
@@ -176,7 +199,7 @@ public partial class MainWindow : Window
             MaximizeFired?.Invoke(sender, WindowState.Normal);
         }
 
-        if (e.LeftButton != MouseButtonState.Pressed)
+        if (e.LeftButton is not MouseButtonState.Pressed)
         {
             return;
         }

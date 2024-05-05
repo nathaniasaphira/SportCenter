@@ -14,7 +14,7 @@ public partial class TitleBarButton : UserControl
 
     public Brush ButtonBackground
     {
-        get => (Brush) GetValue(ButtonBackgroundProperty);
+        get => (Brush)GetValue(ButtonBackgroundProperty);
         set => SetValue(ButtonBackgroundProperty, value);
     }
 
@@ -24,7 +24,7 @@ public partial class TitleBarButton : UserControl
 
     public Geometry ButtonGeometry
     {
-        get => (Geometry) GetValue(ButtonGeometryProperty);
+        get => (Geometry)GetValue(ButtonGeometryProperty);
         set => SetValue(ButtonGeometryProperty, value);
     }
 

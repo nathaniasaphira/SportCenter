@@ -2,18 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              StartupUri="/Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceDictionaries/Icons.xaml" />
+                <ResourceDictionary Source="SharedResources/Icons.xaml" />
+                <ResourceDictionary Source="SharedResources/ComponentAttributes.xaml" />
+                <ResourceDictionary Source="SharedResources/Styles/HomeButtonStyle.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+                <hc:Theme Name="HandyTheme" SyncWithSystem="false" />
             </ResourceDictionary.MergedDictionaries>
-
-            <Thickness x:Key="WindowMargin">20</Thickness>
-            <CornerRadius x:Key="WindowCornerRadius">15</CornerRadius>
-            <CornerRadius x:Key="TitleBarCornerRadius">15, 15, 0, 0</CornerRadius>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

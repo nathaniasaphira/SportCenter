@@ -123,6 +123,9 @@
   <data name="GoodsTransaction" xml:space="preserve">
     <value>Transaksi Barang</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Beranda</value>
+  </data>
   <data name="Stock" xml:space="preserve">
     <value>Stok Barang</value>
   </data>

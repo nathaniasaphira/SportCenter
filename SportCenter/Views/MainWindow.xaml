@@ -4,43 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:components="clr-namespace:SportCenter.Views.Components"
+        xmlns:resx="clr-namespace:SportCenter.Properties"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
         mc:Ignorable="d"
-        Title="{DynamicResource AppTitle}" 
+        Title="{x:Static resx:Resources.AppTitle}" 
         Width="1360" Height="768"
+        MinWidth="800" MinHeight="600"
         ResizeMode="CanResize"
         Loaded="MainWindow_Loaded"
         SizeChanged="MainWindow_OnSizeChanged"
         SourceInitialized="MainWindow_OnSourceInitialized">
     <Grid>
-        <Border x:Name="OuterBorder"
-                Background="{DynamicResource BackgroundBrush}"
-                CornerRadius="{StaticResource WindowCornerRadius}"
-                Margin="{DynamicResource WindowMargin}">
+        <Border Name="OuterBorder"
+                Margin="{DynamicResource WindowMargin}"
+                Background="{DynamicResource RegionBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="3"
+                CornerRadius="{StaticResource WindowCornerRadius}">
+            <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <components:TitleBar Grid.Row="0" Height="50" VerticalAlignment="Top" />
+
+                    <Frame Grid.Row="1" 
+                           BorderThickness="0"
+                           Source="Home.xaml" 
+                           HorizontalAlignment="Stretch" 
+                           VerticalAlignment="Stretch" />
+                </Grid>
+            </Grid>
+
             <Border.Effect>
                 <DropShadowEffect Color="Black" Direction="320"
                                   ShadowDepth="10" Opacity="0.5"
                                   BlurRadius="20" />
             </Border.Effect>
-
-            <Grid>
-                <components:TitleBar Height="50" VerticalAlignment="Top" />
-                <components:ResizeArea />
-            </Grid>
         </Border>
+        
+        <components:ResizeArea Margin="{DynamicResource WindowMargin}" />
     </Grid>
 
-    <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="0" 
-                      CornerRadius="0" 
-                      CaptionHeight="0" 
-                      UseAeroCaptionButtons="False" 
-                      ResizeBorderThickness="7" />
-    </WindowChrome.WindowChrome>
-
     <Window.RenderTransform>
-        <ScaleTransform x:Name="RenderScale" ScaleX="1" ScaleY="1" />
+        <ScaleTransform x:Name="RenderScale" />
     </Window.RenderTransform>
 </Window>

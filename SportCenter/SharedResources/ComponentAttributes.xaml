@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <Thickness x:Key="WindowMargin">20</Thickness>
+    <system:Double x:Key="ResizeAreaSize">4</system:Double>
+
+    <CornerRadius x:Key="WindowCornerRadius">12</CornerRadius>
+    <CornerRadius x:Key="TitleBarCornerRadius">15, 15, 0, 0</CornerRadius>
+
+    <CornerRadius x:Key="ButtonCornerRadius">10</CornerRadius>
+    <system:Double x:Key="ButtonPrimaryFontSize">18</system:Double>
+</ResourceDictionary>

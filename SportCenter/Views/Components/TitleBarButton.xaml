@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
 
     <Border Background="{Binding ButtonBackground, 
                 RelativeSource={RelativeSource AncestorType=UserControl}}"
+            Width="30" Height="30"
             CornerRadius="30"
             Margin="5">
 
@@ -17,12 +17,14 @@
                 Background="Transparent"
                 Width="30" Height="30"
                 Padding="7"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
                 Click="Button_OnClick">
 
             <Viewbox Stretch="UniformToFill">
                 <Path Stroke="{DynamicResource ReverseTextBrush}"
-                      StrokeThickness="2"
-                      Opacity="0.5"
+                      Opacity="0.6"
+                      StrokeThickness="1.3"
                       Data="{Binding ButtonGeometry, 
                              RelativeSource={RelativeSource AncestorType=UserControl}}" />
             </Viewbox>
