@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:components="clr-namespace:SportCenter.Views.Components"
         xmlns:resx="clr-namespace:SportCenter.Properties"
+        xmlns:utils="clr-namespace:SportCenter.Utils"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -16,41 +17,68 @@
         Loaded="MainWindow_Loaded"
         SizeChanged="MainWindow_OnSizeChanged"
         SourceInitialized="MainWindow_OnSourceInitialized">
+    <Window.Resources>
+        <utils:VisibilityToBlurMultiConverter x:Key="VisibilityToBlurMultiConverter" />
+    </Window.Resources>
+
+    <Window.Tag>
+        <MultiBinding Converter="{StaticResource VisibilityToBlurMultiConverter}">
+            <Binding ElementName="LoginModalFrame" Path="Visibility" />
+        </MultiBinding>
+    </Window.Tag>
+
+    <Window.RenderTransform>
+        <ScaleTransform x:Name="RenderScale" />
+    </Window.RenderTransform>
+
     <Grid>
-        <Border Name="OuterBorder"
+        <Border x:Name="OuterBorder"
                 Margin="{DynamicResource WindowMargin}"
-                Background="{DynamicResource RegionBrush}"
+                Background="{DynamicResource SecondaryRegionBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="3"
                 CornerRadius="{StaticResource WindowCornerRadius}">
-            <Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    
-                    <components:TitleBar Grid.Row="0" Height="50" VerticalAlignment="Top" />
 
-                    <Frame Grid.Row="1" 
-                           BorderThickness="0"
-                           Source="Home.xaml" 
-                           HorizontalAlignment="Stretch" 
-                           VerticalAlignment="Stretch" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                    
+                <components:TitleBar Grid.Row="0" 
+                                     Height="50" 
+                                     VerticalAlignment="Top" />
+
+                <Grid Grid.Row="1"
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch">
+
+                    <Frame Source="Home.xaml"
+                           BorderThickness="0" />
+
+                    <Grid.Effect>
+                        <BlurEffect x:Name="BlurEffect" />
+                    </Grid.Effect>
                 </Grid>
+
+                <Frame Grid.Row="1"
+                       Visibility="Visible"
+                       Name="LoginModalFrame"
+                       Source="LoginModal.xaml"
+                       BorderThickness="0"
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Stretch" />
             </Grid>
 
             <Border.Effect>
-                <DropShadowEffect Color="Black" Direction="320"
-                                  ShadowDepth="10" Opacity="0.5"
+                <DropShadowEffect Color="Black" 
+                                  Direction="320"
+                                  ShadowDepth="10" 
+                                  Opacity="0.5"
                                   BlurRadius="20" />
             </Border.Effect>
         </Border>
         
         <components:ResizeArea Margin="{DynamicResource WindowMargin}" />
     </Grid>
-
-    <Window.RenderTransform>
-        <ScaleTransform x:Name="RenderScale" />
-    </Window.RenderTransform>
 </Window>

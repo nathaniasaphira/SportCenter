@@ -12,7 +12,7 @@ public partial class App : Application
         base.OnStartup(e);
 
 #if DEBUG
-        UpdateSkin(SkinType.Dark);
+        UpdateSkin(SkinType.Default);
 #endif
     }
 

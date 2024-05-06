@@ -47,10 +47,10 @@ public partial class TitleBar : UserControl
 
     #region Event Handlers
 
-    private void Window_MaximizeFired(object? sender, WindowState e)
+    private void Window_MaximizeFired(object? sender, bool isMaximized)
     {
-        SwitchTitleBarCornerState(e is WindowState.Maximized);
-        ToggleMaximizeVisibility(e is WindowState.Maximized);
+        SwitchTitleBarCornerState(isMaximized);
+        ToggleMaximizeVisibility(isMaximized);
     }
 
     private void SwitchTitleBarCornerState(bool maximized)

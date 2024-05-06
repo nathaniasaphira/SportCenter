@@ -7,9 +7,14 @@
     <CornerRadius x:Key="WindowCornerRadius">12</CornerRadius>
     <CornerRadius x:Key="TitleBarCornerRadius">12, 12, 0, 0</CornerRadius>
 
+    <CornerRadius x:Key="ModalCornerRadius">12</CornerRadius>
+
     <CornerRadius x:Key="ButtonCornerRadius">10</CornerRadius>
     <system:Double x:Key="ButtonPrimaryFontSize">30</system:Double>
 
     <system:Double x:Key="HomeButtonPrimaryWidth">300</system:Double>
     <system:Double x:Key="HomeButtonPrimaryHeight">450</system:Double>
+
+    <system:Double x:Key="LoginFieldWidth">500</system:Double>
+    <system:Double x:Key="LoginFieldHeight">40</system:Double>
 </ResourceDictionary>

@@ -3,7 +3,6 @@ using SportCenter.Utils;
 using SportCenter.Views.Components;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
 using WpfScreenHelper;
 
@@ -12,7 +11,7 @@ namespace SportCenter.Views;
 public partial class MainWindow : Window
 {
     public static event EventHandler? MainSourceInitialized;
-    public static event EventHandler<WindowState>? MaximizeFired;
+    public static event EventHandler<bool>? MaximizeFired;
 
     private const string CornerRadiusResource = "WindowCornerRadius";
     private const string MarginResource = "WindowMargin";
@@ -34,6 +33,8 @@ public partial class MainWindow : Window
         TitleBar.CloseClicked += OnCloseClick;
         TitleBar.TitleBarDragged += OnTitleBarDrag;
         MaximizeFired += MainWindow_MaximizeFired;
+
+        InitializeBlurEffectRadiusBinding();
     }
 
     ~MainWindow()
@@ -80,7 +81,7 @@ public partial class MainWindow : Window
             SetWindowSizeAndPosition();
             UpdateOuterBorderCornerAndMargin(WindowState is WindowState.Maximized);
 
-            MaximizeFired?.Invoke(sender, WindowState.Maximized);
+            MaximizeFired?.Invoke(sender, true);
             return;
         }
 
@@ -105,12 +106,10 @@ public partial class MainWindow : Window
         AnimationManager.AnimateExpandFadeIn(this, RenderScale, OpacityProperty);
     }
 
-    private void MainWindow_MaximizeFired(object? sender, WindowState e)
+    private void MainWindow_MaximizeFired(object? sender, bool isMaximized)
     {
         AnimationManager.AnimateMaximizeWindow(this, RenderScale, OpacityProperty);
-
-        bool disableResize = e is WindowState.Maximized;
-        ResizeMode = disableResize ? ResizeMode.NoResize : ResizeMode.CanResize;
+        ResizeMode = isMaximized ? ResizeMode.NoResize : ResizeMode.CanResize;
     }
 
     protected override void OnClosing(CancelEventArgs e)
@@ -168,18 +167,14 @@ public partial class MainWindow : Window
 
         if (WindowStateManager.IsMaximized)
         {
-            WindowState = WindowState.Normal;
-
             WindowStateManager.SetWindowSizeToNormal(this);
-            MaximizeFired?.Invoke(sender, WindowState.Normal);
-
-            return;
+        }
+        else
+        {
+            WindowStateManager.SetWindowMaximized(this);
         }
 
-        WindowState = WindowState.Maximized;
-
-        WindowStateManager.SetWindowMaximized(this);
-        MaximizeFired?.Invoke(sender, WindowState.Maximized);
+        MaximizeFired?.Invoke(sender, WindowStateManager.IsMaximized);
     }
 
     private void OnMinimizeClick(object? sender, RoutedEventArgs e)
@@ -193,11 +188,9 @@ public partial class MainWindow : Window
     {
         if (WindowStateManager.IsMaximized)
         {
-            WindowState = WindowState.Normal;
             WindowStateManager.SetWindowSizeToNormal(this, true);
-
             UpdateOuterBorderCornerAndMargin(WindowState is WindowState.Normal);
-            MaximizeFired?.Invoke(sender, WindowState.Normal);
+            MaximizeFired?.Invoke(sender, false);
         }
 
         if (e.LeftButton is not MouseButtonState.Pressed)
@@ -218,4 +211,13 @@ public partial class MainWindow : Window
     }
 
     #endregion Event Handlers
+
+    private void InitializeBlurEffectRadiusBinding()
+    {
+        DependencyPropertyDescriptor? multiBindingDescriptor = DependencyPropertyDescriptor
+            .FromProperty(TagProperty, typeof(Window));
+
+        multiBindingDescriptor.AddValueChanged(this, (_, _) 
+            => BlurEffect.Radius = (double)Tag);
+    }
 }

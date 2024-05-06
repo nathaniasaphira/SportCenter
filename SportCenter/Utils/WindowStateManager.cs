@@ -51,6 +51,7 @@ public static class WindowStateManager
 
     public static void SetWindowMaximized(Window window)
     {
+        window.WindowState = WindowState.Maximized;
         IsMaximized = true;
         window.WindowState = WindowState.Normal;
     }
@@ -81,5 +82,7 @@ public static class WindowStateManager
 
         SetWindowTop(window);
         SetWindowLeft(window);
+
+        window.WindowState = WindowState.Normal;
     }
 }

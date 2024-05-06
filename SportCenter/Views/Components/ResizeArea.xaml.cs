@@ -47,9 +47,9 @@ public partial class ResizeArea : UserControl
         _hWndSource = PresentationSource.FromVisual((Visual) sender) as HwndSource;
     }
 
-    private void Window_MaximizeFired(object sender, WindowState e)
+    private void Window_MaximizeFired(object sender, bool isMaximized)
     {
-        IsEnabled = e is not WindowState.Maximized;
+        IsEnabled = !isMaximized;
     }
 
     private void ResetCursor(object sender, MouseEventArgs e)
