@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:SportCenter.Views"
              xmlns:resx="clr-namespace:SportCenter.Properties"
              xmlns:utils="clr-namespace:SportCenter.Utils"
              mc:Ignorable="d"
@@ -47,7 +46,8 @@
                                VerticalAlignment="Center" />
 
                     <TextBox Name="UsernameTextBox"
-                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged,
+                                ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
                              Width="{DynamicResource LoginFieldWidth}" 
                              Height="{DynamicResource LoginFieldHeight}"
                              MinWidth="200"
@@ -66,7 +66,10 @@
                                VerticalAlignment="Center" />
 
                     <PasswordBox Name="PasswordBox"
-                                 utils:PasswordBoxHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 utils:PasswordBoxHelper.Password="{Binding Password, 
+                                    Mode=TwoWay, UpdateSourceTrigger=LostFocus,
+                                    ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
+                                 PasswordChanged="PasswordBox_OnPasswordChanged"
                                  Width="{DynamicResource LoginFieldWidth}" 
                                  Height="{DynamicResource LoginFieldHeight}"
                                  MinWidth="200"
@@ -83,7 +86,7 @@
                         Width="100" Height="40">
                     <TextBlock Text="{x:Static resx:Resources.Login}" 
                                FontSize="18"
-                               FontWeight="Bold"/>
+                               FontWeight="Bold" />
                 </Button>
             </StackPanel>
 

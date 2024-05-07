@@ -40,7 +40,7 @@ public sealed class LoginModalViewModel : ViewModelBase
         set
         {
             _password = value;
-            OnPropertyChanged(nameof(Password));
+            ValidatePassword();
         }
     }
 
@@ -79,5 +79,22 @@ public sealed class LoginModalViewModel : ViewModelBase
         }
 
         OnPropertyChanged(nameof(Username));
+    }
+
+    private void ValidatePassword()
+    {
+        RemoveError(nameof(Password));
+
+        foreach ((Func<string, bool> rule, string errorMessage) in _passwordRules)
+        {
+            if (!rule(Password))
+            {
+                continue;
+            }
+
+            AddError(nameof(Password), errorMessage);
+        }
+
+        OnPropertyChanged(nameof(Password));
     }
 }

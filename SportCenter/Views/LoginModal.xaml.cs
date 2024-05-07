@@ -37,4 +37,12 @@ public partial class LoginModal : UserControl
         await Task.Delay(TimeSpan.FromSeconds(0.2));
         AnimationManager.AnimateExpandFadeIn(this, RenderScale, OpacityProperty, duration: 0.2);
     }
+
+    private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        if (sender is PasswordBox passwordBox)
+        {
+            ViewModel.Password = passwordBox.Password;
+        }
+    }
 }
