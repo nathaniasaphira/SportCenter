@@ -8,7 +8,7 @@ using WpfScreenHelper;
 
 namespace SportCenter.Views;
 
-public partial class MainWindow : Window
+public sealed partial class MainWindow : Window
 {
     public static event EventHandler? MainSourceInitialized;
     public static event EventHandler<bool>? MaximizeFired;
@@ -48,7 +48,7 @@ public partial class MainWindow : Window
         GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
         if (!disposing)
         {

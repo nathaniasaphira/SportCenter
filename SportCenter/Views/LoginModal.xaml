@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SportCenter.Views"
              xmlns:resx="clr-namespace:SportCenter.Properties"
+             xmlns:utils="clr-namespace:SportCenter.Utils"
              mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="1360"
              Loaded="LoginModal_OnLoaded">
@@ -29,7 +30,7 @@
                 BorderThickness="3"
                 Width="800" Height="450">
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="{x:Static resx:Resources.Login}"
+                <TextBlock Text="{x:Static resx:Resources.WelcomeMessage}"
                            Foreground="{DynamicResource PrimaryTextBrush}"
                            FontSize="32"
                            FontWeight="DemiBold"
@@ -44,7 +45,9 @@
                                FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
                                FontWeight="Light"
                                VerticalAlignment="Center" />
+
                     <TextBox Name="UsernameTextBox"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                              Width="{DynamicResource LoginFieldWidth}" 
                              Height="{DynamicResource LoginFieldHeight}"
                              MinWidth="200"
@@ -53,14 +56,17 @@
                              FontWeight="Light"
                              VerticalAlignment="Center"
                              TextAlignment="Center"
-                             Margin="0, 0, 0, 15" />
+                             Margin="0, 0, 0, 20" />
+
                     <TextBlock Text="{x:Static resx:Resources.Password}"
                                Foreground="{DynamicResource PrimaryTextBrush}"
                                FontSize="16"
                                FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
                                FontWeight="Light"
                                VerticalAlignment="Center" />
+
                     <PasswordBox Name="PasswordBox"
+                                 utils:PasswordBoxHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Width="{DynamicResource LoginFieldWidth}" 
                                  Height="{DynamicResource LoginFieldHeight}"
                                  MinWidth="200"
@@ -73,20 +79,20 @@
                 </StackPanel>
                 
                 <Button Name="LoginButton"
+                        Command="{Binding LoginCommand}"
                         Width="100" Height="40">
                     <TextBlock Text="{x:Static resx:Resources.Login}" 
                                FontSize="18"
                                FontWeight="Bold"/>
                 </Button>
-
             </StackPanel>
 
             <Border.Effect>
                 <DropShadowEffect Color="Black"
                                   Direction="270"
-                                  ShadowDepth="10"
-                                  Opacity="0.5"
-                                  BlurRadius="30" />
+                                  ShadowDepth="5"
+                                  Opacity="0.25"
+                                  BlurRadius="20" />
             </Border.Effect>
         </Border>
     </Grid>

@@ -122,5 +122,14 @@ namespace SportCenter.Properties {
                 return ResourceManager.GetString("Username", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready for a productive shift?.
+        /// </summary>
+        public static string WelcomeMessage {
+            get {
+                return ResourceManager.GetString("WelcomeMessage", resourceCulture);
+            }
+        }
     }
 }

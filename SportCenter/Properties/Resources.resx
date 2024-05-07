@@ -138,4 +138,7 @@
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>Ready for a productive shift?</value>
+  </data>
 </root>
