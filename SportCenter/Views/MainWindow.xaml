@@ -6,6 +6,8 @@
         xmlns:components="clr-namespace:SportCenter.Views.Components"
         xmlns:resx="clr-namespace:SportCenter.Properties"
         xmlns:utils="clr-namespace:SportCenter.Utils"
+        xmlns:vm="clr-namespace:SportCenter.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -53,7 +55,7 @@
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Stretch">
 
-                    <Frame Source="Home.xaml"
+                    <Frame Source="HomeView.xaml"
                            BorderThickness="0" />
 
                     <Grid.Effect>
@@ -62,9 +64,8 @@
                 </Grid>
 
                 <Frame Grid.Row="1"
-                       Visibility="Visible"
                        Name="LoginModalFrame"
-                       Source="LoginModal.xaml"
+                       Source="LoginModalView.xaml"
                        BorderThickness="0"
                        HorizontalAlignment="Stretch" 
                        VerticalAlignment="Stretch" />

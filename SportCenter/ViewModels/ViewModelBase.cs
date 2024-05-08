@@ -1,32 +1,26 @@
 ﻿using System.Collections;
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
+using SportCenter.Views;
 
 namespace SportCenter.ViewModels;
 
-public class ViewModelBase : ObservableObject, INotifyDataErrorInfo
-{
-    public string ErrorMessage { get; set; }
-    
-    public new event PropertyChangedEventHandler PropertyChanged;
+public delegate TViewModel CreateViewModel<out TViewModel>() where TViewModel : ViewModelBase;
 
-    private bool _isBusy;
+public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
+{
+    public virtual void Dispose() { }
+
+    public new event PropertyChangedEventHandler? PropertyChanged;
 
     public bool HasErrors => _errors.Count > 0;
 
     public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-    private readonly Dictionary<string, List<string>> _errors = new();
+    protected static MainWindow MainWindow => App.AppHost!.Services.GetRequiredService<MainWindow>();
 
-    public bool IsBusy
-    {
-        get => _isBusy;
-        set
-        {
-            _isBusy = value;
-            OnPropertyChanged(nameof(IsBusy));
-        }
-    }
+    private readonly Dictionary<string, List<string>> _errors = new();
 
     protected new void OnPropertyChanged(string propertyName)
     {

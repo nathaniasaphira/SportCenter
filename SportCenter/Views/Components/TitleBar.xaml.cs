@@ -7,10 +7,10 @@ namespace SportCenter.Views.Components;
 
 public partial class TitleBar : UserControl
 {
-    public static event RoutedEventHandler? MaximizeClicked;
-    public static event RoutedEventHandler? MinimizeClicked;
-    public static event RoutedEventHandler? CloseClicked;
-    public static event MouseEventHandler? TitleBarDragged;
+    public static event RoutedEventHandler? MaximizeClicked = delegate { };
+    public static event RoutedEventHandler? MinimizeClicked = delegate { };
+    public static event RoutedEventHandler? CloseClicked = delegate { };
+    public static event MouseEventHandler? TitleBarDragged = delegate { };
 
     private const string DefaultCornerRadiusResource = "TitleBarCornerRadius";
     private Point? _initialMousePosition;

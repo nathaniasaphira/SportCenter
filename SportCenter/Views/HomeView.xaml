@@ -1,14 +1,18 @@
-﻿<Page x:Class="SportCenter.Views.Home"
+﻿<Page x:Class="SportCenter.Views.HomeView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:resx="clr-namespace:SportCenter.Properties"
-      xmlns:local="clr-namespace:SportCenter.Views"
       xmlns:components="clr-namespace:SportCenter.Views.Components"
+      xmlns:vm="clr-namespace:SportCenter.ViewModels"
+      d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}"
       mc:Ignorable="d" 
-      d:DesignWidth="1360" d:DesignHeight="768"
-      Title="{x:Static resx:Resources.Home}" >
+      d:DesignWidth="1360" d:DesignHeight="768">
+
+    <Page.RenderTransform>
+        <ScaleTransform x:Name="RenderScale" />
+    </Page.RenderTransform>
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <components:HomeButtonPrimary ButtonText="Hello, World!" 

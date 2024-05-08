@@ -1,8 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace SportCenter.ViewModels;
+﻿namespace SportCenter.ViewModels;
 
 public sealed class MainWindowViewModel : ViewModelBase
 {
-
+    public MainWindowViewModel()
+    { }
 }

@@ -39,6 +39,19 @@ public static class AnimationManager
         element.BeginAnimation(opacityProperty, opacityAnimation);
     }
 
+    public static void AnimateFadeOut(FrameworkElement element, DependencyProperty opacityProperty,
+        Task? onComplete = null)
+    {
+        DoubleAnimation opacityAnimation = new(1, 0, TimeSpan.FromSeconds(0.1));
+
+        opacityAnimation.Completed += (_, _) =>
+        {
+            onComplete?.Start();
+        };
+
+        element.BeginAnimation(opacityProperty, opacityAnimation);
+    }
+
     public static void AnimateMaximizeWindow(FrameworkElement element, ScaleTransform windowRenderScale,
         DependencyProperty opacityProperty, double minScale = 0.95)
     {

@@ -7,6 +7,8 @@
     <CornerRadius x:Key="WindowCornerRadius">12</CornerRadius>
     <CornerRadius x:Key="TitleBarCornerRadius">12, 12, 0, 0</CornerRadius>
 
+    <system:Double x:Key="BlurStrength">50</system:Double>
+
     <CornerRadius x:Key="ModalCornerRadius">12</CornerRadius>
 
     <CornerRadius x:Key="ButtonCornerRadius">10</CornerRadius>

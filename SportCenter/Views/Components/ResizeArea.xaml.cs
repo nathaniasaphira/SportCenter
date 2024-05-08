@@ -10,7 +10,7 @@ namespace SportCenter.Views.Components;
 
 public partial class ResizeArea : UserControl
 {
-    public static event EventHandler? OnResize;
+    public static event EventHandler? OnResize = delegate { };
 
     private enum ResizeDirection
     {

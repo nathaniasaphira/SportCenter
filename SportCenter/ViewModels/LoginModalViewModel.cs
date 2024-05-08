@@ -5,6 +5,9 @@ namespace SportCenter.ViewModels;
 
 public sealed class LoginModalViewModel : ViewModelBase
 {
+    public static event Action? ShowModalAction = delegate { };
+    public static event Action? CloseModalAction = delegate { };
+
     private readonly List<(Func<string, bool> rule, string errorMessage)> _usernameRules =
     [
         (string.IsNullOrEmpty, "Username is required."),
@@ -44,7 +47,7 @@ public sealed class LoginModalViewModel : ViewModelBase
         }
     }
 
-    public ICommand LoginCommand { get; }
+    public ICommand LoginCommand { get; private set; }
 
     public LoginModalViewModel()
     {
@@ -54,15 +57,34 @@ public sealed class LoginModalViewModel : ViewModelBase
         LoginCommand = new RelayCommand(LoginExecute, CanLoginExecute);
     }
 
+    public void ShowModal()
+    {
+        ShowModalAction?.Invoke();
+    }
+
+    public void CloseModal()
+    {
+        CloseModalAction?.Invoke();
+    }
+
     private void LoginExecute()
     {
-        // TODO: Implement login logic
+        if (!CanLoginExecute())
+        {
+            return;
+        }
+
+        CloseModalAction?.Invoke();
     }
 
     private bool CanLoginExecute()
     {
-        return !HasErrors;
+        return !HasErrors && IsUsernameValid() && IsPasswordValid();
     }
+
+    private bool IsUsernameValid() => GetErrors(nameof(Username)).Equals(string.Empty);
+
+    private bool IsPasswordValid() => GetErrors(nameof(Password)).Equals(string.Empty);
 
     private void ValidateUsername()
     {
