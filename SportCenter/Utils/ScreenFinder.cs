@@ -58,7 +58,7 @@ public static class ScreenFinder
             }
         }
 
-        values = values.OrderByDescending(x => x.Item1).ToList();
+        values = [.. values.OrderByDescending(x => x.Item1)];
 
         return values.Count <= 0 ? Screen.PrimaryScreen : values[0].Item2;
     }

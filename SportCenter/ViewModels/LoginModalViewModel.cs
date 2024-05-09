@@ -13,9 +13,9 @@ public sealed class LoginModalViewModel : ViewModelBase
         (string.IsNullOrEmpty, "Username is required."),
         (username => username.Length < 5, "Username must be at least 5 characters long."),
         (username => username.Length > 20, "Username must be at most 20 characters long."),
-        (username => username.Contains(" "), "Username cannot contain spaces."),
-        (username => username.Contains("@"), "Username cannot contain '@'."),
-        (username => username.Contains("."), "Username cannot contain '.'.")
+        (username => username.Contains(' '), "Username cannot contain spaces."),
+        (username => username.Contains('@'), "Username cannot contain '@'."),
+        (username => username.Contains('.'), "Username cannot contain '.'.")
     ];
 
     private readonly List<(Func<string, bool> rule, string errorMessage)> _passwordRules =
@@ -57,15 +57,17 @@ public sealed class LoginModalViewModel : ViewModelBase
         LoginCommand = new RelayCommand(LoginExecute, CanLoginExecute);
     }
 
-    public void ShowModal()
+    public static void ShowModal()
     {
         ShowModalAction?.Invoke();
     }
 
-    public void CloseModal()
+    public static void CloseModal()
     {
         CloseModalAction?.Invoke();
     }
+
+    #region Login Validation
 
     private void LoginExecute()
     {
@@ -119,4 +121,6 @@ public sealed class LoginModalViewModel : ViewModelBase
 
         OnPropertyChanged(nameof(Password));
     }
+
+    #endregion Login Validation
 }

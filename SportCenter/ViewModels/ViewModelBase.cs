@@ -6,8 +6,6 @@ using SportCenter.Views;
 
 namespace SportCenter.ViewModels;
 
-public delegate TViewModel CreateViewModel<out TViewModel>() where TViewModel : ViewModelBase;
-
 public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
 {
     public virtual void Dispose() { }
@@ -20,7 +18,7 @@ public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
 
     protected static MainWindow MainWindow => App.AppHost!.Services.GetRequiredService<MainWindow>();
 
-    private readonly Dictionary<string, List<string>> _errors = new();
+    private readonly Dictionary<string, List<string>> _errors = [];
 
     protected new void OnPropertyChanged(string propertyName)
     {
@@ -29,22 +27,28 @@ public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
 
     public IEnumerable GetErrors(string? propertyName)
     {
-        if (!string.IsNullOrEmpty(propertyName) && _errors.ContainsKey(propertyName))
+        if (string.IsNullOrEmpty(propertyName))
         {
-            return _errors[propertyName];
+            return string.Empty;
         }
 
-        return string.Empty;
+        if (!_errors.TryGetValue(propertyName, out List<string>? errors))
+        {
+            return string.Empty;
+        }
+
+        return errors;
     }
 
     protected void AddError(string propertyName, string error)
     {
-        if (!_errors.ContainsKey(propertyName))
+        if (!_errors.TryGetValue(propertyName, out List<string>? value))
         {
-            _errors[propertyName] = [];
+            value = [];
+            _errors[propertyName] = value;
         }
 
-        _errors[propertyName].Add(error);
+        value.Add(error);
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
     }
 

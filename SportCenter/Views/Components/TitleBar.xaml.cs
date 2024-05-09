@@ -15,6 +15,8 @@ public partial class TitleBar : UserControl
     private const string DefaultCornerRadiusResource = "TitleBarCornerRadius";
     private Point? _initialMousePosition;
 
+    #region Constructor and Destructor
+
     public TitleBar()
     {
         InitializeComponent();
@@ -24,26 +26,12 @@ public partial class TitleBar : UserControl
         ToggleMaximizeVisibility(WindowStateManager.IsMaximized);
     }
 
-    private void Dispose(bool disposing)
+    ~TitleBar()
     {
-        if (!disposing)
-        {
-            return;
-        }
-
         MainWindow.MaximizeFired -= Window_MaximizeFired;
     }
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    ~TitleBar()
-    {
-        Dispose(false);
-    }
+    #endregion Constructor and Destructor
 
     #region Event Handlers
 

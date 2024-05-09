@@ -32,8 +32,7 @@ public partial class LoginModalView : UserControl
     private void ShowModal()
     {
         IsEnabled = true;
-
-        Visibility = Visibility.Visible;
+        InputBlocker.Visibility = Visibility.Visible;
 
         AnimationManager.AnimateExpandFadeIn(this, 
             RenderScale, OpacityProperty);
@@ -44,7 +43,6 @@ public partial class LoginModalView : UserControl
     private void HideModal()
     {
         IsEnabled = false;
-
         InputBlocker.Visibility = Visibility.Collapsed;
 
         AnimationManager.AnimateShrinkFadeOut(this, 

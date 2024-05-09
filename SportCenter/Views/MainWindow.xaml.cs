@@ -4,7 +4,6 @@ using SportCenter.Views.Components;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using SportCenter.ViewModels;
 using WpfScreenHelper;
 
 namespace SportCenter.Views;
@@ -46,23 +45,6 @@ public sealed partial class MainWindow : Window
 
     ~MainWindow()
     {
-        Dispose(false);
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-
-        GC.SuppressFinalize(this);
-    }
-
-    private void Dispose(bool disposing)
-    {
-        if (!disposing)
-        {
-            return;
-        }
-
         MaximizeFired -= MainWindow_MaximizeFired;
 
         TitleBar.MaximizeClicked -= OnMaximizeClick;
@@ -120,7 +102,7 @@ public sealed partial class MainWindow : Window
 
     private void MainWindow_MaximizeFired(object? sender, bool isMaximized)
     {
-        AnimationManager.AnimateMaximizeWindow(this, RenderScale, OpacityProperty);
+        AnimationManager.AnimateMaximizeWindow(this, RenderScale);
         ResizeMode = isMaximized ? ResizeMode.NoResize : ResizeMode.CanResize;
     }
 
@@ -237,59 +219,16 @@ public sealed partial class MainWindow : Window
 
     private void ShowBlurEffect(Action? onComplete = null)
     {
-        double startValue = BlurEffect.Radius;
-        double endValue = (double)FindResource("BlurStrength");
-
-        TimeSpan duration = TimeSpan.FromSeconds(0.5);
-        DateTime startTime = DateTime.Now;
-        DispatcherTimer timer = new() { Interval = TimeSpan.FromMilliseconds(10) };
-
-        timer.Tick += (_, _) =>
-        {
-            double progress = (DateTime.Now - startTime).TotalSeconds / duration.TotalSeconds;
-            BlurEffect.Radius = startValue + (endValue - startValue) * progress;
-
-            if (progress < 1)
-            {
-                return;
-            }
-
-            BlurEffect.Radius = endValue;
-            timer.Stop();
-
-            onComplete?.Invoke();
-        };
-
-        timer.Start();
+        var targetRadius = (double)FindResource("BlurStrength");
+        AnimationManager.AnimateBlurEffect(BlurEffect, 0, targetRadius,
+            TimeSpan.FromSeconds(0.2), onComplete);
     }
-
 
     private void HideBlurEffect(Action? onComplete = null)
     {
-        double startValue = BlurEffect.Radius;
-        const double endValue = 0;
-
-        TimeSpan duration = TimeSpan.FromSeconds(0.5);
-        DateTime startTime = DateTime.Now;
-        DispatcherTimer timer = new() { Interval = TimeSpan.FromMilliseconds(10) };
-
-        timer.Tick += (_, _) =>
-        {
-            double progress = (DateTime.Now - startTime).TotalSeconds / duration.TotalSeconds;
-            BlurEffect.Radius = startValue + (endValue - startValue) * progress;
-
-            if (progress < 1)
-            {
-                return;
-            }
-
-            BlurEffect.Radius = endValue;
-            timer.Stop();
-
-            onComplete?.Invoke();
-        };
-
-        timer.Start();
+        var initialRadius = (double)FindResource("BlurStrength");
+        AnimationManager.AnimateBlurEffect(BlurEffect, initialRadius, 0, 
+            TimeSpan.FromSeconds(0.2), onComplete);
     }
 
     #endregion Blur Effect Methods
