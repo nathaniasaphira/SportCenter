@@ -61,15 +61,6 @@ namespace SportCenter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sport Center.
-        /// </summary>
-        public static string AppTitle {
-            get {
-                return ResourceManager.GetString("AppTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Goods Transaction.
         /// </summary>
         public static string GoodsTransaction {

@@ -20,7 +20,7 @@
               MouseLeftButtonDown="TitleBar_OnMouseLeftButtonDown">
 
             <TextBlock Name="TitleBarText"
-                       Text="{x:Static resx:Resources.AppTitle}"
+                       Text="{StaticResource AppTitle}"
                        Foreground="{DynamicResource PrimaryTextBrush}"
                        FontSize="14"
                        FontFamily="/Assets/Fonts/OpenSans/#Open Sans"

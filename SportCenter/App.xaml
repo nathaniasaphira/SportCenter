@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:vm="clr-namespace:SportCenter.ViewModels"
-             xmlns:views="clr-namespace:SportCenter.Views">
+             xmlns:views="clr-namespace:SportCenter.Views"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <Application.Resources>
         <ResourceDictionary>
+            <system:String x:Key="AppTitle">Sport Center</system:String>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SharedResources/Icons.xaml" />
                 <ResourceDictionary Source="SharedResources/ComponentAttributes.xaml" />

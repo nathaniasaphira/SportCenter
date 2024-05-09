@@ -1,4 +1,5 @@
-﻿using HandyControl.Data;
+﻿using System.Reflection;
+using HandyControl.Data;
 using HandyControl.Themes;
 using HandyControl.Tools;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,8 +14,16 @@ public partial class App : Application
 {
     public static IHost? AppHost { get; private set; }
 
+    private static Mutex? _mutex = null;
+
     public App()
     {
+        if (IsAlreadyRunning())
+        {
+            Current.Shutdown();
+            return;
+        }
+
         AppHost = Host.CreateDefaultBuilder()
             .AddViewModels()
             .AddViews()
@@ -31,7 +40,7 @@ public partial class App : Application
         base.OnStartup(e);
 
 #if DEBUG
-        UpdateSkin(SkinType.Dark);
+        UpdateSkin(SkinType.Default);
 #endif
     }
 
@@ -52,5 +61,15 @@ public partial class App : Application
             Source = new Uri("pack://application:,,,/HandyControl;component/Themes/Theme.xaml")
         });
         Current.MainWindow?.OnApplyTemplate();
+    }
+
+    private static bool IsAlreadyRunning()
+    {
+        string appName = ((AssemblyTitleAttribute)Assembly.GetExecutingAssembly()
+            .GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0]).Title;
+
+        _mutex = new Mutex(true, appName, out bool createdNew);
+
+        return !createdNew;
     }
 }
