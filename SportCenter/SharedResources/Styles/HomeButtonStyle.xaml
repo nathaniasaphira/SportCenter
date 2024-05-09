@@ -13,7 +13,8 @@
                            BorderBrush="{DynamicResource TextIconBrush}"
                            BorderThickness="2"
                            CornerRadius="{DynamicResource ButtonCornerRadius}">
-                       <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                       <ContentPresenter HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" />
 
                        <Border.RenderTransform>
                            <TranslateTransform x:Name="Transform" />
@@ -77,4 +78,59 @@
            </Setter.Value>
        </Setter>
    </Style> 
+
+    <Style x:Key="HomeButtonSecondary" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource SecondaryRegionBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource ReverseTextBrush}" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="Button">
+                <Border Name="Border" 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{DynamicResource TextIconBrush}"
+                        BorderThickness="2"
+                        CornerRadius="{DynamicResource ButtonCornerRadius}">
+                    <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+
+                    <Border.RenderTransform>
+                        <TranslateTransform x:Name="Transform" />
+                    </Border.RenderTransform>
+
+                    <Border.Effect>
+                        <DropShadowEffect Color="{DynamicResource SolidColorBrush}"
+                                          Direction="270"
+                                          ShadowDepth="2"
+                                          Opacity="0.6"
+                                          BlurRadius="50" />
+                    </Border.Effect>
+
+                </Border>
+                <ControlTemplate.Triggers>
+
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource ThirdlyRegionBrush}" />
+                    </Trigger>
+
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource SecondaryRegionBrush}" />
+                    </Trigger>
+
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="Border" 
+                                                 Storyboard.TargetProperty="Width" 
+                                                 From="0"
+                                                 To="{StaticResource HomeButtonSecondaryWidth}"
+                                                 Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style> 
 </ResourceDictionary>

@@ -3,10 +3,10 @@ using System.Windows.Controls;
 
 namespace SportCenter.Views.Components;
 
-public partial class HomeButtonPrimary : UserControl
+public partial class HomeButtonSecondary : UserControl
 {
     public static readonly DependencyProperty ButtonTextProperty =
-        DependencyProperty.Register(nameof(ButtonText), typeof(string), typeof(HomeButtonPrimary),
+        DependencyProperty.Register(nameof(ButtonText), typeof(string), typeof(HomeButtonSecondary),
             new PropertyMetadata(string.Empty));
 
     public string ButtonText
@@ -16,7 +16,7 @@ public partial class HomeButtonPrimary : UserControl
     }
 
     public static readonly DependencyProperty SvgImageSourceProperty =
-        DependencyProperty.Register(nameof(SvgImageSource), typeof(string), typeof(HomeButtonPrimary),
+        DependencyProperty.Register(nameof(SvgImageSource), typeof(string), typeof(HomeButtonSecondary),
             new PropertyMetadata(string.Empty));
 
     public string SvgImageSource
@@ -25,7 +25,7 @@ public partial class HomeButtonPrimary : UserControl
         set => SetValue(SvgImageSourceProperty, value);
     }
 
-    public HomeButtonPrimary()
+    public HomeButtonSecondary()
     {
         InitializeComponent();
     }

@@ -17,6 +17,9 @@
     <system:Double x:Key="HomeButtonPrimaryWidth">265</system:Double>
     <system:Double x:Key="HomeButtonPrimaryHeight">400</system:Double>
 
+    <system:Double x:Key="HomeButtonSecondaryWidth">200</system:Double>
+    <system:Double x:Key="HomeButtonSecondaryHeight">50</system:Double>
+
     <system:Double x:Key="LoginFieldWidth">500</system:Double>
     <system:Double x:Key="LoginFieldHeight">40</system:Double>
 </ResourceDictionary>

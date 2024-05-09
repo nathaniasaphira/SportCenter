@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="SportCenter.Views.Components.HomeButtonSecondary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="240">
+    <Button Name="Button"
+            Style="{StaticResource HomeButtonSecondary}"
+            Width="{StaticResource HomeButtonSecondaryWidth}"
+            Height="{StaticResource HomeButtonSecondaryHeight}"
+            Margin="10">
+        <DockPanel>
+            <svgc:SvgIcon Name="Icon"
+                          UriSource="{Binding SvgImageSource,
+                                RelativeSource={RelativeSource AncestorType=UserControl}}"
+                          Fill="{DynamicResource PrimaryTextBrush}"
+                          Width="30" Height="30" />
+            <TextBlock Name="ButtonTextBlock"
+                       Text="{Binding ButtonText, 
+                            RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       Foreground="{DynamicResource PrimaryTextBrush}"
+                       d:Text="Hello, World!"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="10, 0" />
+        </DockPanel>
+    </Button>
+</UserControl>

@@ -1,12 +1,12 @@
-﻿using System.Reflection;
-using HandyControl.Data;
+﻿using HandyControl.Data;
 using HandyControl.Themes;
 using HandyControl.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SportCenter.Views;
-using System.Windows;
 using SportCenter.HostBuilders;
+using SportCenter.Views;
+using System.Reflection;
+using System.Windows;
 
 namespace SportCenter;
 

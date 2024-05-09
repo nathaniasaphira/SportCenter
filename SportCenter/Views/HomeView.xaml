@@ -15,23 +15,30 @@
     </Page.RenderTransform>
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <WrapPanel Orientation="Horizontal" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"
-                   Margin="40, 50">
-            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Members}" 
-                                          SvgImageSource="/Assets/Images/id-card-line-icon.svg"/>
-            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Suppliers}" 
-                                          SvgImageSource="/Assets/Images/warehousing-icon.svg"/>
-            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Stock}" 
-                                          SvgImageSource="/Assets/Images/box-package-icon.svg"/>
-            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.TransactionReports}" 
-                                          SvgImageSource="/Assets/Images/accounting-icon.svg"/>
-            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.ServiceTransaction}" 
-                                          SvgImageSource="/Assets/Images/tennis-icon.svg" />
-            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.GoodsTransaction}" 
-                                          SvgImageSource="/Assets/Images/fmcg-products-icon.svg"/>
-        </WrapPanel>
+        <StackPanel Margin="40, 50">
+            <DockPanel HorizontalAlignment="Right"
+                       Margin="26, 20">
+                <components:HomeButtonSecondary ButtonText="{x:Static resx:Resources.CashOut}" 
+                                                SvgImageSource="/Assets/Images/hand-money-icon.svg"/>
+                <components:HomeButtonSecondary ButtonText="{x:Static resx:Resources.Logout}" 
+                                                SvgImageSource="/Assets/Images/sign-out-icon.svg"/>
+            </DockPanel>
+            <WrapPanel Orientation="Horizontal" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center">
+                <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Members}" 
+                                              SvgImageSource="/Assets/Images/id-card-line-icon.svg"/>
+                <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Suppliers}" 
+                                              SvgImageSource="/Assets/Images/warehousing-icon.svg"/>
+                <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Stock}" 
+                                              SvgImageSource="/Assets/Images/box-package-icon.svg"/>
+                <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.TransactionReports}" 
+                                              SvgImageSource="/Assets/Images/accounting-icon.svg"/>
+                <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.ServiceTransaction}" 
+                                              SvgImageSource="/Assets/Images/tennis-icon.svg" />
+                <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.GoodsTransaction}" 
+                                              SvgImageSource="/Assets/Images/fmcg-products-icon.svg"/>
+            </WrapPanel>
+        </StackPanel>
     </ScrollViewer>
-
 </Page>

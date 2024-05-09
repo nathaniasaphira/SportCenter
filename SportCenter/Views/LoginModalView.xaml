@@ -6,6 +6,7 @@
              xmlns:resx="clr-namespace:SportCenter.Properties"
              xmlns:utils="clr-namespace:SportCenter.Utils"
              xmlns:viewModels="clr-namespace:SportCenter.ViewModels"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              d:DataContext="{d:DesignInstance Type=viewModels:LoginModalViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="1360"
@@ -86,10 +87,18 @@
                 
                 <Button Name="LoginButton"
                         Command="{Binding LoginCommand}"
-                        Width="100" Height="40">
-                    <TextBlock Text="{x:Static resx:Resources.Login}" 
-                               FontSize="18"
-                               FontWeight="Bold" />
+                        Height="50">
+                    <DockPanel VerticalAlignment="Center">
+                        <svgc:SvgIcon Name="Icon"
+                                      UriSource="/Assets/Images/log-in-icon.svg"
+                                      Fill="{DynamicResource PrimaryTextBrush}"
+                                      Width="30" Height="30"
+                                      Margin="10, 0" />
+                        <TextBlock Text="{x:Static resx:Resources.Login}"
+                                   FontSize="18"
+                                   Margin="10, 0"
+                                   FontWeight="Bold" />
+                    </DockPanel>
                 </Button>
             </StackPanel>
 

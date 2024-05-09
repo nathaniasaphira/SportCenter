@@ -30,9 +30,10 @@
                               UriSource="{Binding SvgImageSource,
                                           RelativeSource={RelativeSource AncestorType=UserControl}}"
                               Fill="{DynamicResource PrimaryTextBrush}"
-                              VerticalAlignment="Bottom" />
+                              VerticalAlignment="Bottom" 
+                              d:UriSource="/Assets/Images/tennis-icon.svg"/>
 
-                <Rectangle Grid.Row="1" Height="65" VerticalAlignment="Top">
+                <Rectangle Grid.Row="1" Height="100" VerticalAlignment="Top">
                     <Rectangle.Fill>
                         <VisualBrush Visual="{Binding ElementName=Icon}">
                             <VisualBrush.RelativeTransform>
