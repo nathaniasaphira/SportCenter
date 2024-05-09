@@ -7,6 +7,9 @@ using SportCenter.HostBuilders;
 using SportCenter.Views;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
+using SportCenter.Services;
 
 namespace SportCenter;
 
@@ -40,7 +43,13 @@ public partial class App : Application
         base.OnStartup(e);
 
 #if DEBUG
-        UpdateSkin(SkinType.Dark);
+        InputBinding toggleTheme = new KeyBinding(new RelayCommand(() =>
+        {
+            ThemeManager.UpdateSkin(ThemeManager.CurrentSkinType is SkinType.Default ? SkinType.Dark : SkinType.Default);
+        }), Key.F12, ModifierKeys.None);
+        window.InputBindings.Add(toggleTheme);
+
+        ThemeManager.UpdateSkin(SkinType.Default);
 #endif
     }
 
@@ -50,17 +59,6 @@ public partial class App : Application
         AppHost.Dispose();
 
         base.OnExit(e);
-    }
-
-    public void UpdateSkin(SkinType skin)
-    {
-        SharedResourceDictionary.SharedDictionaries.Clear();
-        Resources.MergedDictionaries.Add(ResourceHelper.GetSkin(skin));
-        Resources.MergedDictionaries.Add(new ResourceDictionary
-        {
-            Source = new Uri("pack://application:,,,/HandyControl;component/Themes/Theme.xaml")
-        });
-        Current.MainWindow?.OnApplyTemplate();
     }
 
     private static bool IsAlreadyRunning()
