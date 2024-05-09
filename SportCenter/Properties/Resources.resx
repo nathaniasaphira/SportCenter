@@ -129,6 +129,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="ServiceTransaction" xml:space="preserve">
+    <value>Service Transaction</value>
+  </data>
   <data name="Stock" xml:space="preserve">
     <value>Stock</value>
   </data>

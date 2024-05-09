@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:svgc="https://github.com/dotnetprojects/SVGImage"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="350">
 
@@ -15,26 +15,24 @@
             Height="{DynamicResource HomeButtonPrimaryHeight}">
         <StackPanel VerticalAlignment="Center">
 
-            <Grid Margin="10">
-                <svgc:SVGImage Source="{Binding SvgImageSource,
-                    RelativeSource={RelativeSource AncestorType=UserControl}}"
-                               RenderTransformOrigin="0.5,0.5"
-                               VerticalContentAlignment="Center"
-                               HorizontalContentAlignment="Center" />
-
-                <Image Source="{Binding ImageSource,
-                    RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       RenderTransformOrigin="0.5,0.5"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center" />
+            <Grid>
+                <svgc:SvgIcon UriSource="{Binding SvgImageSource,
+                                RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              Fill="{DynamicResource PrimaryTextBrush}"
+                              d:UriSource="pack://application:,,,/SportCenter;component/Assets/Images/tennis-icon.svg"
+                              RenderTransformOrigin="0.5,0.5"
+                              Margin="50, 50, 50, 20"/>
             </Grid>
 
             <TextBlock Name="ButtonTextBlock"
                        Text="{Binding ButtonText,
                             RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       TextWrapping="Wrap"
+                       d:Text="Hello, World!"
+                       TextAlignment="Center"
                        FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
-                       FontSize="{DynamicResource ButtonPrimaryFontSize}" />
+                       FontSize="{DynamicResource ButtonPrimaryFontSize}"
+                       Margin="30, 10" />
         </StackPanel>
     </Button>
-
 </UserControl>

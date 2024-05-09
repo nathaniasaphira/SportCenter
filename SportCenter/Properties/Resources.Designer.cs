@@ -97,6 +97,15 @@ namespace SportCenter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Service Transaction.
+        /// </summary>
+        public static string ServiceTransaction {
+            get {
+                return ResourceManager.GetString("ServiceTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stock.
         /// </summary>
         public static string Stock {

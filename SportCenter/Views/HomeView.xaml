@@ -15,9 +15,9 @@
     </Page.RenderTransform>
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <components:HomeButtonPrimary ButtonText="Hello, World!" 
-                                      SvgImageSource="SportCenter;component//Assets/Images/tennis-icon.svg" />
+        <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.ServiceTransaction}" 
+                                      SvgImageSource="/Assets/Images/tennis-icon.svg" />
         <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.GoodsTransaction}" 
-                                      SvgImageSource="SportCenter;component//Assets/Images/tennis-icon.svg" />
+                                      SvgImageSource="/Assets/Images/fmcg-products-icon.svg"/>
     </DockPanel>
 </Page>
