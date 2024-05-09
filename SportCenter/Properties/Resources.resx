@@ -126,6 +126,9 @@
   <data name="Login" xml:space="preserve">
     <value>Log In</value>
   </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -134,6 +137,12 @@
   </data>
   <data name="Stock" xml:space="preserve">
     <value>Stock</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="TransactionReports" xml:space="preserve">
+    <value>Transaction Reports</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

@@ -20,9 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\accounting-icon.svg" />
     <None Remove="Assets\Images\blur-background-light.jpg" />
+    <None Remove="Assets\Images\box-package-icon.svg" />
     <None Remove="Assets\Images\fmcg-products-icon.svg" />
+    <None Remove="Assets\Images\id-card-line-icon.svg" />
     <None Remove="Assets\Images\tennis-icon.svg" />
+    <None Remove="Assets\Images\warehousing-icon.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,8 +69,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Images\accounting-icon.svg" />
+    <Resource Include="Assets\Images\box-package-icon.svg" />
     <Resource Include="Assets\Images\fmcg-products-icon.svg" />
+    <Resource Include="Assets\Images\id-card-line-icon.svg" />
     <Resource Include="Assets\Images\tennis-icon.svg" />
+    <Resource Include="Assets\Images\warehousing-icon.svg" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="wpf" /></VisualStudio></ProjectExtensions>

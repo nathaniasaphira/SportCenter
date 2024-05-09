@@ -14,10 +14,24 @@
         <ScaleTransform x:Name="RenderScale" />
     </Page.RenderTransform>
 
-    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.ServiceTransaction}" 
-                                      SvgImageSource="/Assets/Images/tennis-icon.svg" />
-        <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.GoodsTransaction}" 
-                                      SvgImageSource="/Assets/Images/fmcg-products-icon.svg"/>
-    </DockPanel>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <WrapPanel Orientation="Horizontal" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Margin="40, 50">
+            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Members}" 
+                                          SvgImageSource="/Assets/Images/id-card-line-icon.svg"/>
+            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Suppliers}" 
+                                          SvgImageSource="/Assets/Images/warehousing-icon.svg"/>
+            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Stock}" 
+                                          SvgImageSource="/Assets/Images/box-package-icon.svg"/>
+            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.TransactionReports}" 
+                                          SvgImageSource="/Assets/Images/accounting-icon.svg"/>
+            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.ServiceTransaction}" 
+                                          SvgImageSource="/Assets/Images/tennis-icon.svg" />
+            <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.GoodsTransaction}" 
+                                          SvgImageSource="/Assets/Images/fmcg-products-icon.svg"/>
+        </WrapPanel>
+    </ScrollViewer>
+
 </Page>
