@@ -15,15 +15,17 @@
             <svgc:SvgIcon Name="Icon"
                           UriSource="{Binding SvgImageSource,
                                 RelativeSource={RelativeSource AncestorType=UserControl}}"
-                          Fill="{DynamicResource PrimaryTextBrush}"
+                          Fill="FloralWhite"
+                          d:UriSource="/Assets/Images/sign-out-icon.svg"
                           Width="30" Height="30" />
             <TextBlock Name="ButtonTextBlock"
                        Text="{Binding ButtonText, 
                             RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       Foreground="{DynamicResource PrimaryTextBrush}"
+                       Foreground="FloralWhite"
                        d:Text="Hello, World!"
                        FontSize="16"
                        FontWeight="Bold"
+                       FontFamily="/Assets/Fonts/NotoSans/#Noto Sans"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Margin="10, 0" />

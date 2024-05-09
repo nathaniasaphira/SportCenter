@@ -23,7 +23,7 @@
                        Text="{StaticResource AppTitle}"
                        Foreground="{DynamicResource PrimaryTextBrush}"
                        FontSize="14"
-                       FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
+                       FontFamily="/Assets/Fonts/Raleway/#Raleway"
                        FontWeight="Light"
                        Opacity="0.7"
                        VerticalAlignment="Center"

@@ -63,7 +63,7 @@
                        TextWrapping="Wrap"
                        d:Text="Hello, World!"
                        TextAlignment="Center"
-                       FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
+                       FontFamily="/Assets/Fonts/Raleway/#Raleway"
                        FontSize="{DynamicResource ButtonPrimaryFontSize}"
                        Margin="30, 10" />
         </Grid>

@@ -40,7 +40,7 @@ public partial class App : Application
         base.OnStartup(e);
 
 #if DEBUG
-        UpdateSkin(SkinType.Default);
+        UpdateSkin(SkinType.Dark);
 #endif
     }
 
