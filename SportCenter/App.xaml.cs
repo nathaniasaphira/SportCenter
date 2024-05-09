@@ -48,8 +48,6 @@ public partial class App : Application
             ThemeManager.UpdateSkin(ThemeManager.CurrentSkinType is SkinType.Default ? SkinType.Dark : SkinType.Default);
         }), Key.F12, ModifierKeys.None);
         window.InputBindings.Add(toggleTheme);
-
-        ThemeManager.UpdateSkin(SkinType.Default);
 #endif
     }
 

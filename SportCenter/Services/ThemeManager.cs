@@ -6,7 +6,15 @@ namespace SportCenter.Services;
 
 public static class ThemeManager
 {
-    public static SkinType CurrentSkinType { get; set; }
+    public static SkinType CurrentSkinType { get; private set; }
+
+    static ThemeManager()
+    {
+        CurrentSkinType = Application.Current.Resources.MergedDictionaries.Contains(
+            ResourceHelper.GetSkin(SkinType.Default))
+            ? SkinType.Default
+            : SkinType.Dark;
+    }
 
     public static void UpdateSkin(SkinType skin)
     {

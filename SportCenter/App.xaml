@@ -16,7 +16,7 @@
                 <ResourceDictionary Source="SharedResources/Styles/LoginButtonStyle.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
-                <hc:Theme Name="HandyTheme" SyncWithSystem="false" />
+                <hc:Theme Name="HandyTheme" SyncWithSystem="true" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
