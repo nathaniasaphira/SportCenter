@@ -1,28 +1,26 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
+using SportCenter.State.Modals;
 
 namespace SportCenter.ViewModels;
 
 public sealed class LoginModalViewModel : ViewModelBase
 {
-    public static event Action? ShowModalAction = delegate { };
-    public static event Action? CloseModalAction = delegate { };
-
     private readonly List<(Func<string, bool> rule, string errorMessage)> _usernameRules =
     [
-        (string.IsNullOrEmpty, "Username is required."),
-        (username => username.Length < 5, "Username must be at least 5 characters long."),
-        (username => username.Length > 20, "Username must be at most 20 characters long."),
-        (username => username.Contains(' '), "Username cannot contain spaces."),
-        (username => username.Contains('@'), "Username cannot contain '@'."),
-        (username => username.Contains('.'), "Username cannot contain '.'.")
+        (string.IsNullOrEmpty, "UsernameRuleRequired"),
+        (username => username.Length < 5, "UsernameRuleMin"),
+        (username => username.Length > 20, "UsernameRuleMax"),
+        (username => username.Contains(' '), "UsernameRuleSpace"),
+        (username => username.Contains('@'), "UsernameRuleAt"),
+        (username => username.Contains('.'), "UsernameRuleDot")
     ];
 
     private readonly List<(Func<string, bool> rule, string errorMessage)> _passwordRules =
     [
-        (string.IsNullOrEmpty, "Password is required."),
-        (password => password.Length < 5, "Password must be at least 5 characters long."),
-        (password => password.Length > 20, "Password must be at most 20 characters long.")
+        (string.IsNullOrEmpty, "PasswordRuleRequired"),
+        (password => password.Length < 5, "PasswordRuleMin"),
+        (password => password.Length > 20, "PasswordRuleMax")
     ];
 
     private string _username;
@@ -49,22 +47,26 @@ public sealed class LoginModalViewModel : ViewModelBase
 
     public ICommand LoginCommand { get; private set; }
 
-    public LoginModalViewModel()
+    private readonly IModalService _modalService;
+
+    public LoginModalViewModel(IModalService modalService)
     {
+        _modalService = modalService;
+
         _username = string.Empty;
         _password = string.Empty;
 
         LoginCommand = new RelayCommand(LoginExecute, CanLoginExecute);
     }
 
-    public static void ShowModal()
+    public void ShowModal()
     {
-        ShowModalAction?.Invoke();
+        _modalService.RaiseShowModal();
     }
 
-    public static void CloseModal()
+    public void CloseModal()
     {
-        CloseModalAction?.Invoke();
+        _modalService.RaiseHideModal();
     }
 
     #region Login Validation
@@ -76,7 +78,7 @@ public sealed class LoginModalViewModel : ViewModelBase
             return;
         }
 
-        CloseModalAction?.Invoke();
+        CloseModal();
     }
 
     private bool CanLoginExecute()

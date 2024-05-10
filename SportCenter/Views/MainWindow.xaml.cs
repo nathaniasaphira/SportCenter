@@ -4,14 +4,15 @@ using SportCenter.Views.Components;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using SportCenter.State.Modals;
 using WpfScreenHelper;
 
 namespace SportCenter.Views;
 
 public sealed partial class MainWindow : Window
 {
-    public static event EventHandler? MainSourceInitialized;
-    public static event EventHandler<bool>? MaximizeFired;
+    public static event EventHandler? MainSourceInitialized = delegate { };
+    public static event EventHandler<bool>? MaximizeFired = delegate { };
 
     private const string CornerRadiusResource = "WindowCornerRadius";
     private const string MarginResource = "WindowMargin";
@@ -24,7 +25,7 @@ public sealed partial class MainWindow : Window
 
     #region Constructor and Destructor
 
-    public MainWindow(object dataContext)
+    public MainWindow(object dataContext, IModalService modalService)
     {
         InitializeComponent();
 
@@ -37,8 +38,8 @@ public sealed partial class MainWindow : Window
         TitleBar.CloseClicked += OnCloseClick;
         TitleBar.TitleBarDragged += OnTitleBarDrag;
 
-        LoginModalView.OnModalShown += ShowLoginModal;
-        LoginModalView.OnModalHidden += HideLoginModal;
+        modalService.ShowModal += ShowModal;
+        modalService.HideModal += HideModal;
 
         InitializeBlurEffectRadiusBinding();
     }
@@ -52,8 +53,8 @@ public sealed partial class MainWindow : Window
         TitleBar.CloseClicked -= OnCloseClick;
         TitleBar.TitleBarDragged -= OnTitleBarDrag;
 
-        LoginModalView.OnModalShown -= ShowLoginModal;
-        LoginModalView.OnModalHidden -= HideLoginModal;
+        //LoginModalView.OnModalShown -= ShowLoginModal;
+        //LoginModalView.OnModalHidden -= HideLoginModal;
     }
 
     #endregion Constructor and Destructor
@@ -97,7 +98,7 @@ public sealed partial class MainWindow : Window
             UpdateOuterBorderCornerAndMargin(true);
         }
 
-        AnimationManager.AnimateExpandFadeIn(this, RenderScale, OpacityProperty);
+        AnimationManager.AnimateExpandFadeIn(this);
     }
 
     private void MainWindow_MaximizeFired(object? sender, bool isMaximized)
@@ -110,7 +111,7 @@ public sealed partial class MainWindow : Window
     {
         e.Cancel = true;
 
-        AnimationManager.AnimateShrinkFadeOut(this, RenderScale, OpacityProperty);
+        AnimationManager.AnimateShrinkFadeOut(this);
 
         _closeTimer.Tick += (_, _) =>
         {
@@ -233,18 +234,30 @@ public sealed partial class MainWindow : Window
 
     #endregion Blur Effect Methods
 
-    #region Login Modal Methods
+    #region Modal Methods
 
-    private void ShowLoginModal()
+    private void ShowModal()
     {
-        LoginModalFrame.Visibility = Visibility.Visible;
+        ModalFrame.IsEnabled = true;
+        ModalFrame.Visibility = Visibility.Visible;
+
+        AnimationManager.AnimateExpandFadeIn(ModalFrame);
         ShowBlurEffect();
     }
 
-    private void HideLoginModal()
+    private void HideModal()
     {
-        HideBlurEffect(() => LoginModalFrame.Visibility = Visibility.Collapsed);
+        ModalFrame.IsEnabled = false;
+        ModalFrame.Visibility = Visibility.Collapsed;
+
+        if (ModalFrame is LoginModalView loginModalView)
+        {
+            loginModalView.InputBlocker.Visibility = Visibility.Collapsed;
+        }
+
+        AnimationManager.AnimateShrinkFadeOut(ModalFrame);
+        HideBlurEffect();
     }
 
-    #endregion Login Modal Methods
+    #endregion Modal Methods
 }

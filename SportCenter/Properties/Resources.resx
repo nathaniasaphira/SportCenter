@@ -138,6 +138,15 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PasswordRuleMax" xml:space="preserve">
+    <value>Password must be at most 20 characters long.</value>
+  </data>
+  <data name="PasswordRuleMin" xml:space="preserve">
+    <value>Password must be at least 5 characters long.</value>
+  </data>
+  <data name="PasswordRuleRequired" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
   <data name="ServiceTransaction" xml:space="preserve">
     <value>Service Transaction</value>
   </data>
@@ -152,6 +161,24 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="UsernameRuleAt" xml:space="preserve">
+    <value>Username cannot contain '@'.</value>
+  </data>
+  <data name="UsernameRuleDot" xml:space="preserve">
+    <value>Username cannot contain '.'.</value>
+  </data>
+  <data name="UsernameRuleMax" xml:space="preserve">
+    <value>Username must be at most 20 characters long.</value>
+  </data>
+  <data name="UsernameRuleMin" xml:space="preserve">
+    <value>Username must be at least 5 characters long.</value>
+  </data>
+  <data name="UsernameRuleRequired" xml:space="preserve">
+    <value>Username is required.</value>
+  </data>
+  <data name="UsernameRuleSpace" xml:space="preserve">
+    <value>Username cannot contain spaces.</value>
   </data>
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Ready for a productive shift?</value>

@@ -2,9 +2,12 @@
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using SportCenter.Utils;
 using SportCenter.Views;
 
 namespace SportCenter.ViewModels;
+
+public delegate TViewModel CreateViewModel<out TViewModel>() where TViewModel : ViewModelBase;
 
 public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
 {
@@ -48,7 +51,7 @@ public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
             _errors[propertyName] = value;
         }
 
-        value.Add(error);
+        value.Add(error.ConvertResourceToMessage());
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
     }
 

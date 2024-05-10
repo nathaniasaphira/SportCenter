@@ -7,7 +7,6 @@
              xmlns:utils="clr-namespace:SportCenter.Utils"
              xmlns:viewModels="clr-namespace:SportCenter.ViewModels"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-             xmlns:components="clr-namespace:SportCenter.Views.Components"
              d:DataContext="{d:DesignInstance Type=viewModels:LoginModalViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="1360"

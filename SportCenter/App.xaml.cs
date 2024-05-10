@@ -1,6 +1,4 @@
 ﻿using HandyControl.Data;
-using HandyControl.Themes;
-using HandyControl.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SportCenter.HostBuilders;
@@ -28,6 +26,7 @@ public partial class App : Application
         }
 
         AppHost = Host.CreateDefaultBuilder()
+            .AddServices()
             .AddViewModels()
             .AddViews()
             .Build();

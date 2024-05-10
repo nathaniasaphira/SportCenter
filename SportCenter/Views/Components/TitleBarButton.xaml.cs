@@ -6,7 +6,7 @@ namespace SportCenter.Views.Components;
 
 public partial class TitleBarButton : UserControl
 {
-    public event RoutedEventHandler? ButtonClicked;
+    public event RoutedEventHandler? ButtonClicked = delegate { };
 
     public static readonly DependencyProperty ButtonBackgroundProperty =
         DependencyProperty.Register(nameof(ButtonBackground), typeof(Brush), 

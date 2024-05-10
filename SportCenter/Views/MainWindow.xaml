@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:components="clr-namespace:SportCenter.Views.Components"
-        xmlns:resx="clr-namespace:SportCenter.Properties"
-        xmlns:utils="clr-namespace:SportCenter.Utils"
         xmlns:vm="clr-namespace:SportCenter.ViewModels"
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
         WindowStyle="None"
@@ -19,16 +17,6 @@
         Loaded="MainWindow_Loaded"
         SizeChanged="MainWindow_OnSizeChanged"
         SourceInitialized="MainWindow_OnSourceInitialized">
-    <Window.Resources>
-        <utils:VisibilityToBlurMultiConverter x:Key="VisibilityToBlurMultiConverter" />
-    </Window.Resources>
-
-    <Window.Tag>
-        <MultiBinding Converter="{StaticResource VisibilityToBlurMultiConverter}">
-            <Binding ElementName="LoginModalFrame" Path="Visibility" />
-        </MultiBinding>
-    </Window.Tag>
-
     <Window.RenderTransform>
         <ScaleTransform x:Name="RenderScale" />
     </Window.RenderTransform>
@@ -55,20 +43,22 @@
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Stretch">
 
-                    <Frame Source="HomeView.xaml"
+                    <Frame Content="{Binding CurrentViewModel}"
                            BorderThickness="0" />
 
                     <Grid.Effect>
-                        <BlurEffect x:Name="BlurEffect" />
+                        <BlurEffect x:Name="BlurEffect" 
+                                    Radius="{StaticResource BlurStrength}" />
                     </Grid.Effect>
                 </Grid>
 
-                <Frame Grid.Row="1"
-                       Name="LoginModalFrame"
-                       Source="LoginModalView.xaml"
-                       BorderThickness="0"
-                       HorizontalAlignment="Stretch" 
-                       VerticalAlignment="Stretch" />
+                <ContentControl Grid.Row="1"
+                                Name="ModalFrame"
+                                Visibility="Visible"
+                                Content="{Binding CurrentModal}"
+                                BorderThickness="0"
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" />
             </Grid>
 
             <Border.Effect>

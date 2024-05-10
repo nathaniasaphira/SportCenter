@@ -156,4 +156,31 @@
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Selamat datang!</value>
   </data>
+  <data name="UsernameRuleRequired" xml:space="preserve">
+    <value>Username harus diisi.</value>
+  </data>
+  <data name="UsernameRuleMin" xml:space="preserve">
+    <value>Username minimal 5 karakter.</value>
+  </data>
+  <data name="UsernameRuleMax" xml:space="preserve">
+    <value>Username maksimal 20 karakter.</value>
+  </data>
+  <data name="UsernameRuleAt" xml:space="preserve">
+    <value>Username tidak dapat mengandung karakter '@'.</value>
+  </data>
+  <data name="PasswordRuleRequired" xml:space="preserve">
+    <value>Password harus diisi.</value>
+  </data>
+  <data name="PasswordRuleMin" xml:space="preserve">
+    <value>Password minimal 8 karakter.</value>
+  </data>
+  <data name="PasswordRuleMax" xml:space="preserve">
+    <value>Password maksimal 20 karakter.</value>
+  </data>
+  <data name="UsernameRuleDot" xml:space="preserve">
+    <value>Username tidak dapat mengandung karakter titik.</value>
+  </data>
+  <data name="UsernameRuleSpace" xml:space="preserve">
+    <value>Username tidak dapat mengandung spasi.</value>
+  </data>
 </root>
