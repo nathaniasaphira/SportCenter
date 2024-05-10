@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using SportCenter.Utils;
 using SportCenter.ViewModels;
+using HcPasswordBox = HandyControl.Controls.PasswordBox;
 
 namespace SportCenter.Views;
 
@@ -35,7 +36,7 @@ public partial class LoginModalView : UserControl
 
     private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
-        if (sender is not PasswordBox passwordBox)
+        if (sender is not HcPasswordBox passwordBox)
         {
             return;
         }

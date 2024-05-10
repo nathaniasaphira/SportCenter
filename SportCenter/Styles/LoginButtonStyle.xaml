@@ -15,18 +15,34 @@
                                           VerticalAlignment="Center" />
 
                         <Border.RenderTransform>
-                            <TranslateTransform x:Name="Transform" />
+                            <ScaleTransform x:Name="ScaleTransform" />
                         </Border.RenderTransform>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Button.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                    To="CornflowerBlue"
+                                                    Duration="0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
 
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="CornflowerBlue" />
-                        </Trigger>
+                        <EventTrigger RoutedEvent="Button.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                    To="#0071e3"
+                                                    Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
 
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="#0071e3" />
                         </Trigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

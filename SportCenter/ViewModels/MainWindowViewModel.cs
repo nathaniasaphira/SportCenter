@@ -49,7 +49,8 @@ public sealed class MainWindowViewModel : ViewModelBase
     private void InitializeViewModelAndModal()
     {
         UpdateCurrentViewModelCommand.Execute(ViewType.Home);
-        _modalService.RaiseShowModal(ModalType.None);
+        _modalService.RaiseShowModal(ModalType.Login);
+        //TODO: Show login when user is unauthorized.
     }
 
     #region Service State Events

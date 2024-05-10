@@ -11,19 +11,21 @@ public static class AddViewModelsHostBuilderExtensions
     {
         host.ConfigureServices(services =>
         {
-            services.AddSingleton<HomeViewModel>();
-            services.AddSingleton<LoginModalViewModel>();
-            services.AddSingleton<MainWindowViewModel>();
-
-            services.AddSingleton<CreateViewModel<HomeViewModel>>(provider => provider.GetRequiredService<HomeViewModel>);
-            services.AddSingleton<CreateViewModel<LoginModalViewModel>>(provider => () => CreateLoginModalViewModel(provider));
+            services.AddViewModel<MainWindowViewModel>();
+            services.AddViewModel<HomeViewModel>();
+            services.AddViewModel<LoginModalViewModel>();
+            services.AddViewModel<LoadingModalViewModel>();
         });
 
         return host;
     }
+}
 
-    private static LoginModalViewModel CreateLoginModalViewModel(IServiceProvider provider)
+public static class ServiceCollectionExtensions
+{
+    public static void AddViewModel<TViewModel>(this IServiceCollection services) where TViewModel : ViewModelBase
     {
-        return new LoginModalViewModel(provider.GetRequiredService<IModalService>());
+        services.AddSingleton<TViewModel>();
+        services.AddSingleton<CreateViewModel<TViewModel>>(provider => provider.GetRequiredService<TViewModel>);
     }
 }

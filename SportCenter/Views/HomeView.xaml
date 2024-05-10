@@ -16,6 +16,10 @@
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="40, 20">
+            <DockPanel HorizontalAlignment="Left">
+                <!-- Hamburger -->
+
+            </DockPanel>
             <DockPanel HorizontalAlignment="Right"
                        Margin="26, 20">
                 <components:HomeButtonSecondary ButtonText="{x:Static resx:Resources.CashOut}" 

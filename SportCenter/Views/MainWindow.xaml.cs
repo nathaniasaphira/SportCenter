@@ -157,6 +157,10 @@ public sealed partial class MainWindow : Window
         OuterBorder.Margin = isMaximized
             ? (Thickness)FindResource(MarginResource)
             : new Thickness(0);
+
+        BackgroundBorder.CornerRadius = isMaximized
+            ? (CornerRadius)FindResource(CornerRadiusResource)
+            : new CornerRadius();
     }
 
     #endregion Window State Management

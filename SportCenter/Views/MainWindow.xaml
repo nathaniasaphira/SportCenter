@@ -26,39 +26,54 @@
                 Margin="{DynamicResource WindowMargin}"
                 Background="{DynamicResource SecondaryRegionBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="3"
+                BorderThickness="2"
                 CornerRadius="{StaticResource WindowCornerRadius}">
 
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                    
-                <components:TitleBar Grid.Row="0" 
-                                     Height="50" 
-                                     VerticalAlignment="Top" />
+                <Border Name="BackgroundBorder"
+                      CornerRadius="{StaticResource WindowCornerRadius}"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FFC9E8F7" Offset="0" />
+                            <GradientStop Color="#FFC9E8F7" Offset="0.25" />
+                            <GradientStop Color="#FFF8BBD0" Offset="0.75" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.Opacity>0.15</Border.Opacity>
+                </Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1"
-                      HorizontalAlignment="Stretch" 
-                      VerticalAlignment="Stretch">
+                    <components:TitleBar Grid.Row="0" 
+                                         Height="50" 
+                                         VerticalAlignment="Top" />
 
-                    <Frame Content="{Binding CurrentViewModel}"
-                           BorderThickness="0" />
+                    <Grid Grid.Row="1"
+                          HorizontalAlignment="Stretch" 
+                          VerticalAlignment="Stretch">
 
-                    <Grid.Effect>
-                        <BlurEffect x:Name="BlurEffect" 
-                                    Radius="{StaticResource BlurStrength}" />
-                    </Grid.Effect>
+                        <Frame Content="{Binding CurrentViewModel}"
+                               BorderThickness="0" />
+
+                        <Grid.Effect>
+                            <BlurEffect x:Name="BlurEffect" 
+                                        Radius="{StaticResource BlurStrength}" />
+                        </Grid.Effect>
+                    </Grid>
+
+                    <ContentControl Grid.Row="1"
+                                    Name="ModalFrame"
+                                    Visibility="Visible"
+                                    Content="{Binding CurrentModal}"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Stretch" 
+                                    VerticalAlignment="Stretch" />
                 </Grid>
-
-                <ContentControl Grid.Row="1"
-                                Name="ModalFrame"
-                                Visibility="Visible"
-                                Content="{Binding CurrentModal}"
-                                BorderThickness="0"
-                                HorizontalAlignment="Stretch" 
-                                VerticalAlignment="Stretch" />
             </Grid>
 
             <Border.Effect>

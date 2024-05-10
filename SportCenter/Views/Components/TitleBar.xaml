@@ -10,7 +10,6 @@
              MouseMove="TitleBar_OnMouseMove">
 
     <Border Name="TitleBarBorder"
-            Background="{DynamicResource SecondaryRegionBrush}"
             CornerRadius="{StaticResource TitleBarCornerRadius}">
 
         <Grid Name="TitleBarPanel"

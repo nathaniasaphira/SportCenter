@@ -13,6 +13,10 @@
                 <views:LoginModalView />
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type vm:LoadingModalViewModel}">
+                <views:LoadingModalView />
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type vm:HomeViewModel}">
                 <views:HomeView />
             </DataTemplate>
@@ -20,8 +24,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SharedResources/Icons.xaml" />
                 <ResourceDictionary Source="SharedResources/ComponentAttributes.xaml" />
-                <ResourceDictionary Source="SharedResources/Styles/HomeButtonStyle.xaml" />
-                <ResourceDictionary Source="SharedResources/Styles/LoginButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/HomeButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/LoginButtonStyle.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
                 <hc:Theme Name="HandyTheme" SyncWithSystem="true" />

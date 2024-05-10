@@ -7,6 +7,7 @@
              xmlns:utils="clr-namespace:SportCenter.Utils"
              xmlns:viewModels="clr-namespace:SportCenter.ViewModels"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              d:DataContext="{d:DesignInstance Type=viewModels:LoginModalViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="1360"
@@ -30,7 +31,7 @@
                 Background="{DynamicResource SecondaryRegionBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="3"
-                Width="800" Height="450">
+                Width="500" Height="550">
 
             <Border.Effect>
                 <DropShadowEffect Color="Black"
@@ -41,57 +42,42 @@
             </Border.Effect>
 
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="{x:Static resx:Resources.WelcomeMessage}"
+                <TextBlock Text="{x:Static resx:Resources.Login}"
                            Foreground="{DynamicResource PrimaryTextBrush}"
-                           FontSize="32"
+                           FontSize="38"
                            FontWeight="DemiBold"
                            FontFamily="/Assets/Fonts/OpenSans/#Open Sans"
                            HorizontalAlignment="Center"/>
 
                 <StackPanel HorizontalAlignment="Center"
                             Margin="0, 40">
-                    <TextBlock Text="{x:Static resx:Resources.Username}"
-                               Foreground="{DynamicResource PrimaryTextBrush}"
-                               FontSize="16"
-                               FontFamily="/Assets/Fonts/Raleway/#Raleway"
-                               FontWeight="Light"
-                               VerticalAlignment="Center" />
 
-                    <TextBox Name="UsernameTextBox"
-                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged,
+                    <hc:TextBox Name="UsernameTextBox"
+                                Text="{Binding Username, UpdateSourceTrigger=PropertyChanged,
                                 ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
-                             Width="{DynamicResource LoginFieldWidth}" 
-                             Height="{DynamicResource LoginFieldHeight}"
+                                hc:InfoElement.Placeholder="{x:Static resx:Resources.Username}"
+                                hc:InfoElement.Title="{x:Static resx:Resources.Username}"
+                                Width="{DynamicResource LoginFieldWidth}" 
+                                Height="{DynamicResource LoginFieldHeight}"
+                                FontSize="18"
+                                FontFamily="/Assets/Fonts/Raleway/#Raleway"
+                                FontWeight="Light"
+                                Margin="0, 0, 0, 25" />
 
-                             MinWidth="200"
-                             FontSize="18"
-                             FontFamily="/Assets/Fonts/Raleway/#Raleway"
-                             FontWeight="Light"
-                             VerticalAlignment="Center"
-                             TextAlignment="Center"
-                             Margin="0, 0, 0, 20" />
-
-                    <TextBlock Text="{x:Static resx:Resources.Password}"
-                               Foreground="{DynamicResource PrimaryTextBrush}"
-                               FontSize="16"
-                               FontFamily="/Assets/Fonts/Raleway/#Raleway"
-                               FontWeight="Light"
-                               VerticalAlignment="Center" />
-
-                    <PasswordBox Name="PasswordBox"
-                                 utils:PasswordBoxHelper.Password="{Binding Password, 
-                                    Mode=TwoWay, UpdateSourceTrigger=LostFocus,
-                                    ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
-                                 PasswordChanged="PasswordBox_OnPasswordChanged"
-                                 Width="{DynamicResource LoginFieldWidth}" 
-                                 Height="{DynamicResource LoginFieldHeight}"
-                                 MinWidth="200"
-                                 FontSize="18"
-                                 FontFamily="/Assets/Fonts/Raleway/#Raleway"
-                                 FontWeight="Light"
-                                 VerticalAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                                 Margin="0" />
+                    <hc:PasswordBox Name="PasswordBox"
+                                    utils:PasswordBoxHelper.Password="{Binding Password, 
+                                        Mode=TwoWay, UpdateSourceTrigger=LostFocus,
+                                        ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
+                                    PasswordBox.PasswordChanged="PasswordBox_OnPasswordChanged"
+                                    Width="{DynamicResource LoginFieldWidth}" 
+                                    Height="{DynamicResource LoginFieldHeight}"
+                                    hc:InfoElement.Title="{x:Static resx:Resources.Password}"
+                                    hc:InfoElement.Placeholder="{x:Static resx:Resources.Password}"
+                                    ShowEyeButton="True"
+                                    IsSafeEnabled="True"
+                                    FontSize="18"
+                                    FontFamily="/Assets/Fonts/Raleway/#Raleway"
+                                    FontWeight="Light" />
                 </StackPanel>
                 
                 <Button Name="LoginButton"

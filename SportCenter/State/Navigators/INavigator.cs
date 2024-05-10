@@ -10,7 +10,8 @@ public enum ViewType
 public enum ModalType
 {
     None,
-    Login
+    Login,
+    Loading
 }
 
 public interface INavigator
