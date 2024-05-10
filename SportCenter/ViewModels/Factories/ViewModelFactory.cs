@@ -16,7 +16,7 @@ public class ViewModelFactory(
         };
     }
 
-    public ViewModelBase CreateModal(ModalType modalType)
+    public ViewModelBase? CreateModal(ModalType modalType)
     {
         return modalType switch
         {

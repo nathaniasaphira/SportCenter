@@ -16,7 +16,7 @@ public enum ModalType
 public interface INavigator
 {
     ViewModelBase CurrentViewModel { get; set; }
-    ViewModelBase CurrentModal { get; set; }
+    ViewModelBase? CurrentModal { get; set; }
 
     event Action ViewModelStateChanged;
     event Action ModalStateChanged;

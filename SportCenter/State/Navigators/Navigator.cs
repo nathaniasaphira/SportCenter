@@ -20,9 +20,9 @@ public class Navigator : INavigator
         }
     }
 
-    private ViewModelBase _currentModal;
+    private ViewModelBase? _currentModal = null;
 
-    public ViewModelBase CurrentModal
+    public ViewModelBase? CurrentModal
     {
         get => _currentModal;
         set
@@ -33,5 +33,4 @@ public class Navigator : INavigator
             ModalStateChanged?.Invoke();
         }
     }
-
 }

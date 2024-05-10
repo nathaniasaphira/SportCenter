@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using SportCenter.State.Modals;
+using SportCenter.State.Navigators;
 using WpfScreenHelper;
 
 namespace SportCenter.Views;
@@ -23,6 +24,8 @@ public sealed partial class MainWindow : Window
         Interval = TimeSpan.FromSeconds(CloseDurationSeconds)
     };
 
+    private readonly IModalService _modalService;
+
     #region Constructor and Destructor
 
     public MainWindow(object dataContext, IModalService modalService)
@@ -30,6 +33,7 @@ public sealed partial class MainWindow : Window
         InitializeComponent();
 
         DataContext = dataContext;
+        _modalService = modalService;
 
         MaximizeFired += MainWindow_MaximizeFired;
 
@@ -38,10 +42,13 @@ public sealed partial class MainWindow : Window
         TitleBar.CloseClicked += OnCloseClick;
         TitleBar.TitleBarDragged += OnTitleBarDrag;
 
-        modalService.ShowModal += ShowModal;
-        modalService.HideModal += HideModal;
+        _modalService.ShowModal += ShowModal;
+        _modalService.HideModal += HideModal;
 
-        InitializeBlurEffectRadiusBinding();
+        if (!_modalService.IsModalVisible)
+        {
+            HideBlurEffect();
+        }
     }
 
     ~MainWindow()
@@ -53,8 +60,8 @@ public sealed partial class MainWindow : Window
         TitleBar.CloseClicked -= OnCloseClick;
         TitleBar.TitleBarDragged -= OnTitleBarDrag;
 
-        //LoginModalView.OnModalShown -= ShowLoginModal;
-        //LoginModalView.OnModalHidden -= HideLoginModal;
+        _modalService.ShowModal -= ShowModal;
+        _modalService.HideModal -= HideModal;
     }
 
     #endregion Constructor and Destructor
@@ -209,15 +216,6 @@ public sealed partial class MainWindow : Window
 
     #region Blur Effect Methods
 
-    private void InitializeBlurEffectRadiusBinding()
-    {
-        DependencyPropertyDescriptor? multiBindingDescriptor = DependencyPropertyDescriptor
-            .FromProperty(TagProperty, typeof(Window));
-
-        multiBindingDescriptor.AddValueChanged(this, (_, _) 
-            => BlurEffect.Radius = (double)Tag);
-    }
-
     private void ShowBlurEffect(Action? onComplete = null)
     {
         var targetRadius = (double)FindResource("BlurStrength");
@@ -236,7 +234,7 @@ public sealed partial class MainWindow : Window
 
     #region Modal Methods
 
-    private void ShowModal()
+    private void ShowModal(ModalType modalType)
     {
         ModalFrame.IsEnabled = true;
         ModalFrame.Visibility = Visibility.Visible;

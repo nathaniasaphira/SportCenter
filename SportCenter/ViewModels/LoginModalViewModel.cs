@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 using SportCenter.State.Modals;
+using SportCenter.State.Navigators;
 
 namespace SportCenter.ViewModels;
 
@@ -61,7 +62,7 @@ public sealed class LoginModalViewModel : ViewModelBase
 
     public void ShowModal()
     {
-        _modalService.RaiseShowModal();
+        _modalService.RaiseShowModal(ModalType.Login);
     }
 
     public void CloseModal()

@@ -6,5 +6,5 @@ public interface IViewModelFactory
 {
     ViewModelBase CreateViewModel(ViewType viewType);
 
-    ViewModelBase CreateModal(ModalType modalType);
+    ViewModelBase? CreateModal(ModalType modalType);
 }

@@ -1,17 +1,32 @@
-﻿namespace SportCenter.State.Modals;
+﻿using SportCenter.State.Navigators;
+
+namespace SportCenter.State.Modals;
 
 public class ModalService : IModalService
 {
-    public event Action ShowModal = delegate { };
+    public event Action<ModalType> ShowModal = delegate { };
+
     public event Action HideModal = delegate { };
 
-    public void RaiseShowModal()
+    public bool IsModalVisible { get; set; }
+
+    public void RaiseShowModal(ModalType modalType)
     {
-        ShowModal?.Invoke();
+        if (modalType is ModalType.None)
+        {
+            RaiseHideModal();
+            return;
+        }
+
+        IsModalVisible = true;
+
+        ShowModal?.Invoke(modalType);
     }
 
     public void RaiseHideModal()
     {
+        IsModalVisible = false;
+
         HideModal?.Invoke();
     }
 }
