@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace SportCenter.DataAccess;
 
-public class DatabaseHandler
+public class DatabaseService
 {
-    private readonly DatabaseConnection _databaseConnection;
+    public DatabaseConnection _databaseConnection;
 
-    public DatabaseHandler()
+    public DatabaseService()
     {
         string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
         _databaseConnection = new DatabaseConnection(connectionString);
     }
 
-    public void InsertNewRow(string column1, string column2)
+    public void GetAll(string column1, string column2)
     {
         using (IDbConnection connection = _databaseConnection.CreateConnection())
         {
             connection.Open();
 
-            string query = "";
-
+            string query = "SELECT * FROM members";
+            
             connection.Execute(query, new { column1, column2 });
         }
     }
