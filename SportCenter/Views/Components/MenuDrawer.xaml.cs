@@ -58,11 +58,8 @@ public partial class MenuDrawer : UserControl
         AnimationManager.AnimateSlideHorizontal(DrawerBorder, 0, -450,
             TimeSpan.FromSeconds(0.2));
 
-        AnimationManager.AnimateShrinkFadeOut(InputBlocker, 
-            onComplete: new Task(() =>
-            {
-                InputBlocker.Visibility = Visibility.Collapsed;
-            }));
+        InputBlocker.Visibility = Visibility.Collapsed;
+        AnimationManager.AnimateShrinkFadeOut(InputBlocker);
     }
 
     private void InputBlocker_OnMouseDown(object sender, MouseButtonEventArgs e)
