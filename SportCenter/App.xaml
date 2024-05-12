@@ -26,11 +26,11 @@
                 <ResourceDictionary Source="SharedResources/ComponentAttributes.xaml" />
                 <ResourceDictionary Source="/Styles/HomeButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/LoginButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/HamburgerButtonStyle.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
                 <hc:Theme Name="HandyTheme" SyncWithSystem="true" />
             </ResourceDictionary.MergedDictionaries>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>
