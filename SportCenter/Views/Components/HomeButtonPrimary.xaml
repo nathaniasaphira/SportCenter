@@ -10,7 +10,7 @@
     <Button Name="Button"
             Style="{StaticResource HomeButtonPrimary}"
             MinWidth="150" MinHeight="225"
-            Margin="20"
+            Margin="18"
             Width="{DynamicResource HomeButtonPrimaryWidth}"
             Height="{DynamicResource HomeButtonPrimaryHeight}">
         <Grid VerticalAlignment="Center">

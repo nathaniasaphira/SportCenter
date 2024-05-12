@@ -23,7 +23,7 @@ public partial class LoginModalView : UserControl
     {
         if (e.ChangedButton is MouseButton.Left)
         {
-            AnimationManager.AnimateBounce(this, RenderScale);
+            AnimationManager.AnimateBounce(this);
         }
     }
 

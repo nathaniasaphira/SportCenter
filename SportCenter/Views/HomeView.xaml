@@ -13,21 +13,22 @@
     <Page.RenderTransform>
         <ScaleTransform x:Name="RenderScale" />
     </Page.RenderTransform>
-    <StackPanel>
-        <DockPanel HorizontalAlignment="Left" Margin="40, 20">
-            <components:HamburgerButton x:Name="HamburgerButton"/>
-        </DockPanel>
+    <Grid HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                      VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="40, 0">
-                <DockPanel HorizontalAlignment="Right"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="0, 0, 0, 0">
+            <StackPanel Margin="55, 0">
+                <DockPanel Name="HomeButtonSecondaryContainer" 
+                           HorizontalAlignment="Right"
                            Margin="26, 20">
                     <components:HomeButtonSecondary ButtonText="{x:Static resx:Resources.CashOut}"
                                                     SvgImageSource="/Assets/Images/hand-money-icon.svg" />
                     <components:HomeButtonSecondary ButtonText="{x:Static resx:Resources.Logout}"
                                                     SvgImageSource="/Assets/Images/sign-out-icon.svg" />
                 </DockPanel>
-                <WrapPanel Orientation="Horizontal"
+                <WrapPanel Name="HomeButtonPrimaryContainer" 
+                           Orientation="Horizontal"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center">
                     <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.Members}"
@@ -45,5 +46,13 @@
                 </WrapPanel>
             </StackPanel>
         </ScrollViewer>
-    </StackPanel>
+        <components:MenuDrawer IsMenuDrawerOpen="{Binding IsMenuDrawerOpen, Mode=TwoWay}" />
+        <DockPanel HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="16, 10">
+            <components:HamburgerButton Command="{Binding DisplayMenuDrawerCommand}"
+                                        CommandParameter="{Binding IsMenuDrawerOpen}"
+                                        IsChecked="{Binding IsMenuDrawerOpen, Mode=TwoWay}" />
+        </DockPanel>
+    </Grid>
 </Page>

@@ -41,7 +41,7 @@
                             <GradientStop Color="#FFF8BBD0" Offset="0.75" />
                         </LinearGradientBrush>
                     </Border.Background>
-                    <Border.Opacity>0.15</Border.Opacity>
+                    <Border.Opacity>0.05</Border.Opacity>
                 </Border>
                 <Grid>
                     <Grid.RowDefinitions>

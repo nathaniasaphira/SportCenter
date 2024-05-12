@@ -8,7 +8,12 @@
              d:DesignWidth="100">
     <ToggleButton x:Name="Button"
                   Style="{StaticResource HamburgerButton}"
-                  IsChecked="False"
+                  Command="{Binding Command,
+                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                  CommandParameter="{Binding CommandParameter,
+                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                  IsChecked="{Binding IsChecked,
+                      RelativeSource={RelativeSource AncestorType=UserControl}}"
                   VerticalContentAlignment="Stretch"
                   Height="50"
                   Width="50"

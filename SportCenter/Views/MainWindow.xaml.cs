@@ -110,7 +110,7 @@ public sealed partial class MainWindow : Window
 
     private void MainWindow_MaximizeFired(object? sender, bool isMaximized)
     {
-        AnimationManager.AnimateMaximizeWindow(this, RenderScale);
+        AnimationManager.AnimateMaximizeWindow(this);
         ResizeMode = isMaximized ? ResizeMode.NoResize : ResizeMode.CanResize;
     }
 

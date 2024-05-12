@@ -69,8 +69,9 @@ public static class AnimationManager
         timer.Start();
     }
 
-    public static void AnimateMaximizeWindow(FrameworkElement element, ScaleTransform windowRenderScale, double minScale = 0.95)
+    public static void AnimateMaximizeWindow(FrameworkElement element, double minScale = 0.95)
     {
+        ScaleTransform windowRenderScale = element.RenderTransform as ScaleTransform ?? new ScaleTransform();
         element.RenderTransformOrigin = new Point(0.5, 0.5);
 
         DoubleAnimation scaleXAnimation = new(minScale, 1, TimeSpan.FromSeconds(0.1))
@@ -87,9 +88,9 @@ public static class AnimationManager
         windowRenderScale.BeginAnimation(ScaleTransform.ScaleYProperty, scaleYAnimation);
     }
 
-    public static void AnimateBounce(FrameworkElement element, ScaleTransform windowRenderScale,
-        int repeatCount = 1)
+    public static void AnimateBounce(FrameworkElement element, int repeatCount = 1)
     {
+        ScaleTransform windowRenderScale = element.RenderTransform as ScaleTransform ?? new ScaleTransform();
         element.RenderTransformOrigin = new Point(0.5, 0.5);
 
         DoubleAnimation scaleXAnimation = new(1, 1.1, TimeSpan.FromSeconds(0.1))
@@ -106,5 +107,11 @@ public static class AnimationManager
 
         windowRenderScale.BeginAnimation(ScaleTransform.ScaleXProperty, scaleXAnimation);
         windowRenderScale.BeginAnimation(ScaleTransform.ScaleYProperty, scaleYAnimation);
+    }
+
+    public static void AnimateSlideHorizontal(FrameworkElement element, double from, double to, TimeSpan duration)
+    {
+        ThicknessAnimation animation = new(new Thickness(from, 0, -from, 0), new Thickness(to, 0, -to, 0), duration);
+        element.BeginAnimation(FrameworkElement.MarginProperty, animation);
     }
 }
