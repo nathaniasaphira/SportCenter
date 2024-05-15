@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 
 namespace SportCenter.ViewModels;
 

@@ -9,7 +9,7 @@ public class ViewModelFactory(
     CreateViewModel<LoadingModalViewModel> createLoadingModal)
     : IViewModelFactory
 {
-    public ViewModelBase CreateViewModel(ViewType viewType)
+    public ViewModelBase? CreateViewModel(ViewType viewType)
     {
         return viewType switch
         {

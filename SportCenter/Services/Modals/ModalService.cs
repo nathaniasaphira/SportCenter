@@ -1,4 +1,6 @@
-﻿namespace SportCenter.Services.Modals;
+﻿using SportCenter.Services.Navigators;
+
+namespace SportCenter.Services.Modals;
 
 public class ModalService : IModalService
 {

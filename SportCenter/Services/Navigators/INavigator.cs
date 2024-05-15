@@ -2,14 +2,9 @@
 
 namespace SportCenter.Services.Navigators;
 
-public enum ViewType
-{
-    Home
-}
-
 public interface INavigator
 {
-    ViewModelBase CurrentViewModel { get; set; }
+    ViewModelBase? CurrentViewModel { get; set; }
 
     event Action ViewModelStateChanged;
 }

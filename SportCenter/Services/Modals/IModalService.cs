@@ -1,11 +1,6 @@
-﻿namespace SportCenter.Services.Modals;
+﻿using SportCenter.Services.Navigators;
 
-public enum ModalType
-{
-    None,
-    Login,
-    Loading
-}
+namespace SportCenter.Services.Modals;
 
 public interface IModalService
 {

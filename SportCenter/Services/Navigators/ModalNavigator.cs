@@ -2,13 +2,20 @@
 
 namespace SportCenter.Services.Navigators;
 
+public enum ModalType
+{
+    None,
+    Login,
+    Loading
+}
+
 public class ModalNavigator : INavigator
 {
     public event Action ViewModelStateChanged = delegate { };
 
-    private ViewModelBase _currentViewModel;
+    private ViewModelBase? _currentViewModel;
 
-    public ViewModelBase CurrentViewModel
+    public ViewModelBase? CurrentViewModel
     {
         get => _currentViewModel;
         set

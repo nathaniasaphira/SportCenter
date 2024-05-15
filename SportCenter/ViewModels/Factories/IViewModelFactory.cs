@@ -5,7 +5,7 @@ namespace SportCenter.ViewModels.Factories;
 
 public interface IViewModelFactory
 {
-    ViewModelBase CreateViewModel(ViewType viewType);
+    ViewModelBase? CreateViewModel(ViewType viewType);
 
     ViewModelBase? CreateModalViewModel(ModalType modalType);
 }

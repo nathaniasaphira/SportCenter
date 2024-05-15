@@ -1,4 +1,5 @@
 ﻿using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 using SportCenter.Utils;
 
 namespace SportCenter.ViewModels;

@@ -5,7 +5,7 @@ using SportCenter.ViewModels.Factories;
 
 namespace SportCenter.Commands;
 
-public class UpdateCurrentModalCommand(ModalNavigator modalNavigator, IViewModelFactory viewModelFactory) : ICommand
+public class UpdateCurrentModalCommand(INavigator modalNavigator, IViewModelFactory viewModelFactory) : ICommand
 {
     public event EventHandler? CanExecuteChanged = delegate { };
 

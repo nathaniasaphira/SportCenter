@@ -8,7 +8,7 @@ namespace SportCenter.ViewModels;
 
 public sealed class MainWindowViewModel : ViewModelBase
 {
-    public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
+    public ViewModelBase? CurrentViewModel => _navigator.CurrentViewModel;
     public ViewModelBase? CurrentModalViewModel => _modalNavigator.CurrentViewModel;
     
     public bool IsModalOpen => _modalNavigator.IsModalOpen;
