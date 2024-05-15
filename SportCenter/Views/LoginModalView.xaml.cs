@@ -48,4 +48,9 @@ public partial class LoginModalView : UserControl
 
         viewModel.Password = passwordBox.Password;
     }
+
+    public static explicit operator LoginModalView(Frame v)
+    {
+        throw new NotImplementedException();
+    }
 }

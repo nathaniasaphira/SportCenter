@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SportCenter.State.Modals;
+using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 using SportCenter.ViewModels;
 using SportCenter.Views;
 
@@ -12,8 +13,12 @@ public static class AddViewsHostBuilderExtensions
     {
         host.ConfigureServices(services =>
         {
-            services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainWindowViewModel>(), 
-                s.GetRequiredService<IModalService>()));
+            services.AddSingleton(s => new MainWindow( 
+                s.GetRequiredService<IModalService>(),
+                s.GetRequiredService<ModalNavigator>())
+            {
+                DataContext = s.GetRequiredService<MainWindowViewModel>()
+            });
         });
 
         return host;

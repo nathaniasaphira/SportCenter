@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using SportCenter.Commands;
-using SportCenter.State.Modals;
-using SportCenter.State.Navigators;
+using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 using SportCenter.ViewModels.Factories;
 
 namespace SportCenter.ViewModels;
@@ -9,28 +9,31 @@ namespace SportCenter.ViewModels;
 public sealed class MainWindowViewModel : ViewModelBase
 {
     public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
-
-    public ViewModelBase? CurrentModal => _navigator.CurrentModal;
+    public ViewModelBase? CurrentModalViewModel => _modalNavigator.CurrentViewModel;
+    
+    public bool IsModalOpen => _modalNavigator.IsModalOpen;
 
     public ICommand UpdateCurrentViewModelCommand { get; }
-
     public ICommand UpdateCurrentModalCommand { get; }
 
     private readonly INavigator _navigator;
-    private readonly IViewModelFactory _viewModelFactory;
+    private readonly ModalNavigator _modalNavigator;
     private readonly IModalService _modalService;
 
-    public MainWindowViewModel(INavigator navigator, IViewModelFactory viewModelFactory, IModalService modalService)
+    public MainWindowViewModel(INavigator navigator, 
+        IViewModelFactory viewModelFactory, 
+        IModalService modalService, 
+        ModalNavigator modalNavigator)
     {
         _navigator = navigator;
-        _viewModelFactory = viewModelFactory;
         _modalService = modalService;
+        _modalNavigator = modalNavigator;
 
         _navigator.ViewModelStateChanged += Navigator_ViewModelStateChanged;
-        _navigator.ModalStateChanged += Navigator_ModalStateChanged;
+        _modalNavigator.ViewModelStateChanged += Navigator_ModalStateChanged;
 
-        UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory);
-        UpdateCurrentModalCommand = new UpdateCurrentModalCommand(_navigator, _viewModelFactory);
+        UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(_navigator, viewModelFactory);
+        UpdateCurrentModalCommand = new UpdateCurrentModalCommand(_modalNavigator, viewModelFactory);
 
         _modalService.HideModal += ModalService_HideModal;
         _modalService.ShowModal += ModalService_ShowModal;
@@ -41,7 +44,10 @@ public sealed class MainWindowViewModel : ViewModelBase
     public override void Dispose()
     {
         _navigator.ViewModelStateChanged -= Navigator_ViewModelStateChanged;
-        _navigator.ModalStateChanged -= Navigator_ModalStateChanged;
+        _modalNavigator.ViewModelStateChanged -= Navigator_ModalStateChanged;
+
+        _modalService.HideModal -= ModalService_HideModal;
+        _modalService.ShowModal -= ModalService_ShowModal;
 
         base.Dispose();
     }
@@ -49,8 +55,8 @@ public sealed class MainWindowViewModel : ViewModelBase
     private void InitializeViewModelAndModal()
     {
         UpdateCurrentViewModelCommand.Execute(ViewType.Home);
+        //TODO (5/16/2024) Nicky: Show login when user is unauthorized.
         _modalService.RaiseShowModal(ModalType.Login);
-        //TODO: Show login when user is unauthorized.
     }
 
     #region Service State Events
@@ -62,7 +68,8 @@ public sealed class MainWindowViewModel : ViewModelBase
 
     private void Navigator_ModalStateChanged()
     {
-        OnPropertyChanged(nameof(CurrentModal));
+        OnPropertyChanged(nameof(CurrentModalViewModel));
+        OnPropertyChanged(nameof(IsModalOpen));
     }
 
     private void ModalService_ShowModal(ModalType modalType)

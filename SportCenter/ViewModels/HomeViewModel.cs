@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using SportCenter.State.Modals;
-using SportCenter.State.Navigators;
 using System.Windows.Input;
+using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 
 namespace SportCenter.ViewModels;
 

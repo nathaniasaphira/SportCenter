@@ -1,6 +1,4 @@
-﻿using SportCenter.State.Navigators;
-
-namespace SportCenter.State.Modals;
+﻿namespace SportCenter.Services.Modals;
 
 public class ModalService : IModalService
 {
@@ -8,7 +6,7 @@ public class ModalService : IModalService
 
     public event Action HideModal = delegate { };
 
-    public bool IsModalVisible { get; set; }
+    public bool IsModalOpen { get; set; }
 
     public void RaiseShowModal(ModalType modalType)
     {
@@ -18,14 +16,14 @@ public class ModalService : IModalService
             return;
         }
 
-        IsModalVisible = true;
+        IsModalOpen = true;
 
         ShowModal?.Invoke(modalType);
     }
 
     public void RaiseHideModal()
     {
-        IsModalVisible = false;
+        IsModalOpen = false;
 
         HideModal?.Invoke();
     }

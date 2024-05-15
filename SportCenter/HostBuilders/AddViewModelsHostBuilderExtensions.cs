@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SportCenter.State.Modals;
 using SportCenter.ViewModels;
 
 namespace SportCenter.HostBuilders;
@@ -26,6 +25,6 @@ public static class ServiceCollectionExtensions
     public static void AddViewModel<TViewModel>(this IServiceCollection services) where TViewModel : ViewModelBase
     {
         services.AddSingleton<TViewModel>();
-        services.AddSingleton<CreateViewModel<TViewModel>>(provider => provider.GetRequiredService<TViewModel>);
+        services.AddTransient<CreateViewModel<TViewModel>>(provider => provider.GetRequiredService<TViewModel>);
     }
 }

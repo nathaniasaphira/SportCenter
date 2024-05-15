@@ -1,13 +1,13 @@
 ﻿using SportCenter.ViewModels;
 
-namespace SportCenter.State.Navigators;
+namespace SportCenter.Services.Navigators;
 
-public class Navigator : INavigator
+public class ModalNavigator : INavigator
 {
     public event Action ViewModelStateChanged = delegate { };
-    public event Action ModalStateChanged = delegate { };
 
     private ViewModelBase _currentViewModel;
+
     public ViewModelBase CurrentViewModel
     {
         get => _currentViewModel;
@@ -20,17 +20,10 @@ public class Navigator : INavigator
         }
     }
 
-    private ViewModelBase? _currentModal = null;
+    public bool IsModalOpen => CurrentViewModel != null;
 
-    public ViewModelBase? CurrentModal
+    public void CloseModal()
     {
-        get => _currentModal;
-        set
-        {
-            _currentModal?.Dispose();
-
-            _currentModal = value;
-            ModalStateChanged?.Invoke();
-        }
+        CurrentViewModel = null;
     }
 }

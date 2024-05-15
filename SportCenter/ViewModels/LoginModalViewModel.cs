@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
-using SportCenter.State.Modals;
-using SportCenter.State.Navigators;
+using SportCenter.Services.Modals;
 
 namespace SportCenter.ViewModels;
 
@@ -49,25 +48,17 @@ public sealed class LoginModalViewModel : ViewModelBase
     public ICommand LoginCommand { get; private set; }
 
     private readonly IModalService _modalService;
+    private readonly LoadingModalViewModel _loadingModalViewModel;
 
-    public LoginModalViewModel(IModalService modalService)
+    public LoginModalViewModel(IModalService modalService, LoadingModalViewModel loadingModalViewModel)
     {
         _modalService = modalService;
+        _loadingModalViewModel = loadingModalViewModel;
 
         _username = string.Empty;
         _password = string.Empty;
 
         LoginCommand = new RelayCommand(LoginExecute, CanLoginExecute);
-    }
-
-    public void ShowModal()
-    {
-        _modalService.RaiseShowModal(ModalType.Login);
-    }
-
-    public void CloseModal()
-    {
-        _modalService.RaiseHideModal();
     }
 
     #region Login Validation
@@ -79,7 +70,8 @@ public sealed class LoginModalViewModel : ViewModelBase
             return;
         }
 
-        CloseModal();
+        _modalService.RaiseShowModal(ModalType.Loading);
+        _loadingModalViewModel.LoadAuthentication();
     }
 
     private bool CanLoginExecute()

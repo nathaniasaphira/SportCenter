@@ -1,4 +1,5 @@
-﻿using SportCenter.State.Navigators;
+﻿using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 
 namespace SportCenter.ViewModels.Factories;
 
@@ -6,5 +7,5 @@ public interface IViewModelFactory
 {
     ViewModelBase CreateViewModel(ViewType viewType);
 
-    ViewModelBase? CreateModal(ModalType modalType);
+    ViewModelBase? CreateModalViewModel(ModalType modalType);
 }

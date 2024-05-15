@@ -1,6 +1,11 @@
-﻿using SportCenter.State.Navigators;
+﻿namespace SportCenter.Services.Modals;
 
-namespace SportCenter.State.Modals;
+public enum ModalType
+{
+    None,
+    Login,
+    Loading
+}
 
 public interface IModalService
 {
@@ -8,7 +13,7 @@ public interface IModalService
 
     event Action HideModal;
 
-    bool IsModalVisible { get; set; }
+    bool IsModalOpen { get; set; }
 
     void RaiseShowModal(ModalType modalType);
 

@@ -4,8 +4,8 @@ using SportCenter.Views.Components;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using SportCenter.State.Modals;
-using SportCenter.State.Navigators;
+using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 using WpfScreenHelper;
 
 namespace SportCenter.Views;
@@ -25,15 +25,16 @@ public sealed partial class MainWindow : Window
     };
 
     private readonly IModalService _modalService;
+    private readonly ModalNavigator _modalNavigator;
 
     #region Constructor and Destructor
 
-    public MainWindow(object dataContext, IModalService modalService)
+    public MainWindow(IModalService modalService, ModalNavigator modalNavigator)
     {
         InitializeComponent();
 
-        DataContext = dataContext;
         _modalService = modalService;
+        _modalNavigator = modalNavigator;
 
         MaximizeFired += MainWindow_MaximizeFired;
 
@@ -44,8 +45,9 @@ public sealed partial class MainWindow : Window
 
         _modalService.ShowModal += ShowModal;
         _modalService.HideModal += HideModal;
+        _modalNavigator.ViewModelStateChanged += OnModalViewModelChanged;
 
-        if (!_modalService.IsModalVisible)
+        if (!modalNavigator.IsModalOpen)
         {
             HideBlurEffect();
         }
@@ -62,6 +64,7 @@ public sealed partial class MainWindow : Window
 
         _modalService.ShowModal -= ShowModal;
         _modalService.HideModal -= HideModal;
+        _modalNavigator.ViewModelStateChanged -= OnModalViewModelChanged;
     }
 
     #endregion Constructor and Destructor
@@ -234,31 +237,46 @@ public sealed partial class MainWindow : Window
             TimeSpan.FromSeconds(0.2), onComplete);
     }
 
+    private bool IsBlurEffectVisible() => BlurEffect.Radius is not 0;
+
     #endregion Blur Effect Methods
 
     #region Modal Methods
 
     private void ShowModal(ModalType modalType)
     {
-        ModalFrame.IsEnabled = true;
-        ModalFrame.Visibility = Visibility.Visible;
+        if (!IsBlurEffectVisible())
+        {
+            ShowBlurEffect();
+        }
 
-        AnimationManager.AnimateExpandFadeIn(ModalFrame);
-        ShowBlurEffect();
+        ModalControl.IsEnabled = true;
+        ModalControl.Visibility = Visibility.Visible;
+
+        AnimationManager.AnimateExpandFadeIn(ModalControl);
     }
 
     private void HideModal()
     {
-        ModalFrame.IsEnabled = false;
-        ModalFrame.Visibility = Visibility.Collapsed;
+        if (IsBlurEffectVisible())
+        {
+            HideBlurEffect();
+        }
 
-        if (ModalFrame is LoginModalView loginModalView)
+        ModalControl.IsEnabled = false;
+        ModalControl.Visibility = Visibility.Collapsed;
+
+        if (ModalControl is LoginModalView loginModalView)
         {
             loginModalView.InputBlocker.Visibility = Visibility.Collapsed;
         }
 
-        AnimationManager.AnimateShrinkFadeOut(ModalFrame);
-        HideBlurEffect();
+        AnimationManager.AnimateShrinkFadeOut(ModalControl);
+    }
+
+    private void OnModalViewModelChanged()
+    {
+        ModalControl.Content = _modalNavigator.CurrentViewModel;
     }
 
     #endregion Modal Methods

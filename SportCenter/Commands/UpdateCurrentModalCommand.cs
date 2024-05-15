@@ -1,10 +1,11 @@
 ﻿using System.Windows.Input;
-using SportCenter.State.Navigators;
+using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 using SportCenter.ViewModels.Factories;
 
 namespace SportCenter.Commands;
 
-public class UpdateCurrentModalCommand(INavigator navigator, IViewModelFactory viewModelFactory) : ICommand
+public class UpdateCurrentModalCommand(ModalNavigator modalNavigator, IViewModelFactory viewModelFactory) : ICommand
 {
     public event EventHandler? CanExecuteChanged = delegate { };
 
@@ -20,6 +21,6 @@ public class UpdateCurrentModalCommand(INavigator navigator, IViewModelFactory v
             return;
         }
 
-        navigator.CurrentModal = viewModelFactory.CreateModal(modalType);
+        modalNavigator.CurrentViewModel = viewModelFactory.CreateModalViewModel(modalType)!;
     }
 }

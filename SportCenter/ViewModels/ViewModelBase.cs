@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Extensions.DependencyInjection;
 using SportCenter.Utils;
-using SportCenter.Views;
 
 namespace SportCenter.ViewModels;
 
@@ -14,16 +12,14 @@ public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
     public virtual void Dispose() { }
 
     public new event PropertyChangedEventHandler? PropertyChanged;
-
+    
     public bool HasErrors => _errors.Count > 0;
-
+    
     public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
-
-    protected static MainWindow MainWindow => App.AppHost!.Services.GetRequiredService<MainWindow>();
-
+    
     private readonly Dictionary<string, List<string>> _errors = [];
-
-    protected new void OnPropertyChanged(string propertyName)
+    
+    protected new virtual void OnPropertyChanged(string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

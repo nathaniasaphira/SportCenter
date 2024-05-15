@@ -1,4 +1,5 @@
-﻿using SportCenter.State.Navigators;
+﻿using SportCenter.Services.Modals;
+using SportCenter.Services.Navigators;
 
 namespace SportCenter.ViewModels.Factories;
 
@@ -17,7 +18,7 @@ public class ViewModelFactory(
         };
     }
 
-    public ViewModelBase? CreateModal(ModalType modalType)
+    public ViewModelBase? CreateModalViewModel(ModalType modalType)
     {
         return modalType switch
         {

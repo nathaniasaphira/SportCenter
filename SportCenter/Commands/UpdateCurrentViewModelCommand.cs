@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using SportCenter.State.Navigators;
+using SportCenter.Services.Navigators;
 using SportCenter.ViewModels.Factories;
 
 namespace SportCenter.Commands;
