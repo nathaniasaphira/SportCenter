@@ -1,24 +1,30 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
+﻿using Dapper;
+using MySql.Data.MySqlClient;
+using SportCenter.Models.Entities;
+using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SportCenter.DataAccess;
 
 public class DatabaseConnection
 {
-    private readonly string _connectionString;
+    private string connectionString;
 
-    public DatabaseConnection(string connectionString)
+    public DatabaseConnection()
     {
-        _connectionString = connectionString;
+        this.connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
     }
 
     public IDbConnection CreateConnection()
     {
-        return new MySqlConnection(_connectionString);
+        return new MySqlConnection(connectionString);
+    }
+
+    public List<Member> GetAllData()
+    {
+        using IDbConnection dbConnection = CreateConnection();
+
+        string query = "SELECT * FROM members";
+        return dbConnection.Query<Member>(query).AsList();
     }
 }
