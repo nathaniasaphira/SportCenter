@@ -26,6 +26,7 @@ public partial class App : Application
         }
 
         AppHost = Host.CreateDefaultBuilder()
+            .AddDatabase()
             .AddServices()
             .AddViewModels()
             .AddViews()

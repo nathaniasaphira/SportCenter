@@ -1,5 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System.Diagnostics;
+using System.Windows.Input;
 using SportCenter.Commands;
+using SportCenter.DataAccess;
 using SportCenter.Services.Modals;
 using SportCenter.Services.Navigators;
 using SportCenter.ViewModels.Factories;
@@ -11,6 +13,7 @@ public sealed class MainWindowViewModel : ViewModelBase
     private readonly INavigator _navigator;
     private readonly ModalNavigator _modalNavigator;
     private readonly IModalService _modalService;
+    private readonly DatabaseConnection _database;
 
     public ViewModelBase? CurrentViewModel => _navigator.CurrentViewModel;
     public ViewModelBase? CurrentModalViewModel => _modalNavigator.CurrentViewModel;
@@ -19,11 +22,18 @@ public sealed class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(INavigator navigator, 
         IViewModelFactory viewModelFactory, 
         IModalService modalService, 
-        ModalNavigator modalNavigator)
+        ModalNavigator modalNavigator,
+        DatabaseConnection database)
     {
         _navigator = navigator;
         _modalService = modalService;
         _modalNavigator = modalNavigator;
+
+        // TODO: clean up this code
+        _database = database;
+        _database.CreateConnection();
+        List<Models.Entities.Member> members = _database.GetAllData();
+        Debug.WriteLine(members[0].Name);
 
         _navigator.ViewModelStateChanged += Navigator_ViewModelStateChanged;
         _modalNavigator.ViewModelStateChanged += Navigator_ModalStateChanged;
