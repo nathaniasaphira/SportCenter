@@ -15,6 +15,7 @@ public static class AddViewsHostBuilderExtensions
         {
             services.AddSingleton(s => new MainWindow( 
                 s.GetRequiredService<IModalService>(),
+                s.GetRequiredService<INavigator>(),
                 s.GetRequiredService<ModalNavigator>())
             {
                 DataContext = s.GetRequiredService<MainWindowViewModel>()

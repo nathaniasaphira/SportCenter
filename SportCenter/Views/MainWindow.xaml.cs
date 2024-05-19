@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using SportCenter.Utils;
 using SportCenter.Views.Components;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using SportCenter.Services.Modals;
@@ -25,18 +27,23 @@ public sealed partial class MainWindow : Window
     };
 
     private readonly IModalService _modalService;
+    private readonly INavigator _navigator;
     private readonly ModalNavigator _modalNavigator;
 
     #region Constructor and Destructor
 
-    public MainWindow(IModalService modalService, ModalNavigator modalNavigator)
+    public MainWindow(IModalService modalService, INavigator navigator, ModalNavigator modalNavigator)
     {
         InitializeComponent();
 
         _modalService = modalService;
+        _navigator = navigator;
         _modalNavigator = modalNavigator;
 
         MaximizeFired += MainWindow_MaximizeFired;
+
+        _navigator.ViewModelStateChanged += OnViewModelChanged;
+        _modalNavigator.ViewModelStateChanged += OnModalViewModelChanged;
 
         TitleBar.MaximizeClicked += OnMaximizeClick;
         TitleBar.MinimizeClicked += OnMinimizeClick;
@@ -45,7 +52,6 @@ public sealed partial class MainWindow : Window
 
         _modalService.ShowModal += ShowModal;
         _modalService.HideModal += HideModal;
-        _modalNavigator.ViewModelStateChanged += OnModalViewModelChanged;
 
         if (!modalNavigator.IsModalOpen)
         {
@@ -57,6 +63,9 @@ public sealed partial class MainWindow : Window
     {
         MaximizeFired -= MainWindow_MaximizeFired;
 
+        _navigator.ViewModelStateChanged -= OnViewModelChanged;
+        _modalNavigator.ViewModelStateChanged -= OnModalViewModelChanged;
+
         TitleBar.MaximizeClicked -= OnMaximizeClick;
         TitleBar.MinimizeClicked -= OnMinimizeClick;
         TitleBar.CloseClicked -= OnCloseClick;
@@ -64,7 +73,6 @@ public sealed partial class MainWindow : Window
 
         _modalService.ShowModal -= ShowModal;
         _modalService.HideModal -= HideModal;
-        _modalNavigator.ViewModelStateChanged -= OnModalViewModelChanged;
     }
 
     #endregion Constructor and Destructor
@@ -166,6 +174,24 @@ public sealed partial class MainWindow : Window
             : new CornerRadius();
     }
 
+    private static void SetIsTabStop(DependencyObject parent, bool isTabStop)
+    {
+        IEnumerable logicalDescendants = LogicalTreeHelper.GetChildren(parent);
+
+        foreach (object descendant in logicalDescendants)
+        {
+            if (descendant is FrameworkElement child)
+            {
+                if (child is Control control)
+                {
+                    control.IsTabStop = isTabStop;
+                }
+
+                SetIsTabStop(child, isTabStop);
+            }
+        }
+    }
+
     #endregion Window State Management
 
     #region Event Handlers
@@ -241,6 +267,20 @@ public sealed partial class MainWindow : Window
 
     #endregion Blur Effect Methods
 
+    #region Navigation Methods
+
+    private void OnViewModelChanged()
+    {
+        MainFrame.Content = _navigator.CurrentViewModel;
+    }
+
+    private void OnModalViewModelChanged()
+    {
+        ModalControl.Content = _modalNavigator.CurrentViewModel;
+    }
+
+    #endregion Navigation Methods
+
     #region Modal Methods
 
     private void ShowModal(ModalType modalType)
@@ -262,7 +302,7 @@ public sealed partial class MainWindow : Window
         {
             HideBlurEffect();
         }
-
+        
         ModalControl.IsEnabled = false;
         ModalControl.Visibility = Visibility.Collapsed;
 
@@ -272,11 +312,6 @@ public sealed partial class MainWindow : Window
         }
 
         AnimationManager.AnimateShrinkFadeOut(ModalControl);
-    }
-
-    private void OnModalViewModelChanged()
-    {
-        ModalControl.Content = _modalNavigator.CurrentViewModel;
     }
 
     #endregion Modal Methods

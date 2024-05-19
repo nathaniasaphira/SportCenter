@@ -14,6 +14,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddViewModel<HomeViewModel>();
             services.AddViewModel<LoginModalViewModel>();
             services.AddViewModel<LoadingModalViewModel>();
+            services.AddViewModel<ServiceTransactionViewModel>();
         });
 
         return host;

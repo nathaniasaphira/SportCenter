@@ -57,7 +57,9 @@
                           HorizontalAlignment="Stretch" 
                           VerticalAlignment="Stretch">
 
-                        <Frame Content="{Binding CurrentViewModel}"
+                        <Frame Name="MainFrame"
+                               Content="{Binding CurrentViewModel}"
+                               NavigationUIVisibility="Hidden" 
                                BorderThickness="0" />
 
                         <Grid.Effect>

@@ -20,6 +20,7 @@
                     RelativeSource={RelativeSource AncestorType=UserControl}}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                IsTabStop="False"
                 Click="Button_OnClick">
 
             <Viewbox Stretch="UniformToFill">

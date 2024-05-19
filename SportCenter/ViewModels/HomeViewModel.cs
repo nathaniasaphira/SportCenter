@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using System.Windows.Input;
 using SportCenter.Services.Modals;
 using SportCenter.Services.Navigators;
+using System.Windows.Input;
+using SportCenter.Commands;
+using SportCenter.ViewModels.Factories;
 
 namespace SportCenter.ViewModels;
 
 public sealed class HomeViewModel : ViewModelBase
 {
-    public ICommand DisplayMenuDrawerCommand { get; }
 
     private bool _isMenuDrawerOpen;
 
@@ -22,10 +23,13 @@ public sealed class HomeViewModel : ViewModelBase
     }
 
     private readonly INavigator _navigator;
-
     private readonly IModalService _modalService;
 
-    public HomeViewModel(INavigator navigator, IModalService modalService)
+    public ICommand UpdateCurrentViewModelCommand => _navigator.UpdateCurrentViewModelCommand;
+    public ICommand DisplayMenuDrawerCommand { get; }
+
+    public HomeViewModel(INavigator navigator, 
+        IModalService modalService)
     {
         _navigator = navigator;
         _modalService = modalService;

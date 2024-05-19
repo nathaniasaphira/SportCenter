@@ -8,6 +8,10 @@
              d:DesignHeight="500" d:DesignWidth="350">
 
     <Button Name="Button"
+            Command="{Binding Command,
+                RelativeSource={RelativeSource AncestorType=UserControl}}"
+            CommandParameter="{Binding CommandParameter,
+                RelativeSource={RelativeSource AncestorType=UserControl}}"
             Style="{StaticResource HomeButtonPrimary}"
             MinWidth="150" MinHeight="225"
             Margin="18"

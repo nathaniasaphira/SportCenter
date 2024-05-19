@@ -1,10 +1,10 @@
-﻿using SportCenter.Services.Modals;
-using SportCenter.Services.Navigators;
+﻿using SportCenter.Services.Navigators;
 
 namespace SportCenter.ViewModels.Factories;
 
 public class ViewModelFactory(
     CreateViewModel<HomeViewModel> createHomeViewModel,
+    CreateViewModel<ServiceTransactionViewModel> createServiceTransactionViewModel,
     CreateViewModel<LoginModalViewModel> createLoginModal,
     CreateViewModel<LoadingModalViewModel> createLoadingModal)
     : IViewModelFactory
@@ -14,6 +14,7 @@ public class ViewModelFactory(
         return viewType switch
         {
             ViewType.Home => createHomeViewModel(),
+            ViewType.ServiceTransaction => createServiceTransactionViewModel(),
             _ => throw new ArgumentException("The ViewType does not have a ViewModel.", nameof(viewType))
         };
     }

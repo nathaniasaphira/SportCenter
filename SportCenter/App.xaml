@@ -21,6 +21,10 @@
                 <views:HomeView />
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type vm:ServiceTransactionViewModel}">
+                <views:ServiceTransactionView />
+            </DataTemplate>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SharedResources/Icons.xaml" />
                 <ResourceDictionary Source="SharedResources/ComponentAttributes.xaml" />

@@ -6,6 +6,7 @@
       xmlns:resx="clr-namespace:SportCenter.Properties"
       xmlns:components="clr-namespace:SportCenter.Views.Components"
       xmlns:vm="clr-namespace:SportCenter.ViewModels"
+      xmlns:nav="clr-namespace:SportCenter.Services.Navigators"
       d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}"
       mc:Ignorable="d"
       d:DesignWidth="1360"
@@ -40,13 +41,18 @@
                     <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.TransactionReports}"
                                                   SvgImageSource="/Assets/Images/accounting-icon.svg" />
                     <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.ServiceTransaction}"
-                                                  SvgImageSource="/Assets/Images/tennis-icon.svg" />
+                                                  SvgImageSource="/Assets/Images/tennis-icon.svg"
+                                                  Command="{Binding UpdateCurrentViewModelCommand}"
+                                                  CommandParameter="{x:Static nav:ViewType.ServiceTransaction}" />
                     <components:HomeButtonPrimary ButtonText="{x:Static resx:Resources.GoodsTransaction}"
                                                   SvgImageSource="/Assets/Images/fmcg-products-icon.svg" />
                 </WrapPanel>
             </StackPanel>
         </ScrollViewer>
-        <components:MenuDrawer IsMenuDrawerOpen="{Binding IsMenuDrawerOpen, Mode=TwoWay}" />
+
+        <components:MenuDrawer IsMenuDrawerOpen="{Binding IsMenuDrawerOpen, Mode=TwoWay}"
+                               d:IsHidden="True" />
+
         <DockPanel HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Margin="16, 10">

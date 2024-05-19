@@ -8,17 +8,13 @@ namespace SportCenter.ViewModels;
 
 public sealed class MainWindowViewModel : ViewModelBase
 {
-    public ViewModelBase? CurrentViewModel => _navigator.CurrentViewModel;
-    public ViewModelBase? CurrentModalViewModel => _modalNavigator.CurrentViewModel;
-    
-    public bool IsModalOpen => _modalNavigator.IsModalOpen;
-
-    public ICommand UpdateCurrentViewModelCommand { get; }
-    public ICommand UpdateCurrentModalCommand { get; }
-
     private readonly INavigator _navigator;
     private readonly ModalNavigator _modalNavigator;
     private readonly IModalService _modalService;
+
+    public ViewModelBase? CurrentViewModel => _navigator.CurrentViewModel;
+    public ViewModelBase? CurrentModalViewModel => _modalNavigator.CurrentViewModel;
+    public bool IsModalOpen => _modalNavigator.IsModalOpen;
 
     public MainWindowViewModel(INavigator navigator, 
         IViewModelFactory viewModelFactory, 
@@ -32,8 +28,8 @@ public sealed class MainWindowViewModel : ViewModelBase
         _navigator.ViewModelStateChanged += Navigator_ViewModelStateChanged;
         _modalNavigator.ViewModelStateChanged += Navigator_ModalStateChanged;
 
-        UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(_navigator, viewModelFactory);
-        UpdateCurrentModalCommand = new UpdateCurrentModalCommand(_modalNavigator, viewModelFactory);
+        _navigator.UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(_navigator, viewModelFactory);
+        _modalNavigator.UpdateCurrentViewModelCommand = new UpdateCurrentModalCommand(_modalNavigator, viewModelFactory);
 
         _modalService.HideModal += ModalService_HideModal;
         _modalService.ShowModal += ModalService_ShowModal;
@@ -54,7 +50,8 @@ public sealed class MainWindowViewModel : ViewModelBase
 
     private void InitializeViewModelAndModal()
     {
-        UpdateCurrentViewModelCommand.Execute(ViewType.Home);
+        _navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Home);
+
         //TODO (5/16/2024) Nicky: Show login when user is unauthorized.
         _modalService.RaiseShowModal(ModalType.Login);
     }
@@ -74,12 +71,12 @@ public sealed class MainWindowViewModel : ViewModelBase
 
     private void ModalService_ShowModal(ModalType modalType)
     {
-        UpdateCurrentModalCommand.Execute(modalType);
+        _modalNavigator.UpdateCurrentViewModelCommand.Execute(modalType);
     }
 
     private void ModalService_HideModal()
     {
-        UpdateCurrentModalCommand.Execute(ModalType.None);
+        _modalNavigator.UpdateCurrentViewModelCommand.Execute(ModalType.None);
     }
 
     #endregion Service State Events
