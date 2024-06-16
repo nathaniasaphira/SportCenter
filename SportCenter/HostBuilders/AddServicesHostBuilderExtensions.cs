@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using SportCenter.Services.Modals;
 using SportCenter.Services.Navigators;
+using SportCenter.Services.Users;
 using SportCenter.ViewModels.Factories;
 
 namespace SportCenter.HostBuilders;
@@ -16,6 +17,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IModalService, ModalService>();
             services.AddSingleton<INavigator, Navigator>();
             services.AddSingleton<ModalNavigator>();
+            services.AddSingleton<IUserService, UserService>();
         });
 
         return host;

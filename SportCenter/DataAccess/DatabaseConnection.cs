@@ -8,23 +8,15 @@ namespace SportCenter.DataAccess;
 
 public class DatabaseConnection
 {
-    private string connectionString;
+    private readonly string _connectionString;
 
     public DatabaseConnection()
     {
-        this.connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+        _connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
     }
 
     public IDbConnection CreateConnection()
     {
-        return new MySqlConnection(connectionString);
-    }
-
-    public List<Member> GetAllData()
-    {
-        using IDbConnection dbConnection = CreateConnection();
-
-        string query = "SELECT * FROM members";
-        return dbConnection.Query<Member>(query).AsList();
+        return new MySqlConnection(_connectionString);
     }
 }

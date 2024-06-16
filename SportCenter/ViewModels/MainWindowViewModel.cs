@@ -28,12 +28,7 @@ public sealed class MainWindowViewModel : ViewModelBase
         _navigator = navigator;
         _modalService = modalService;
         _modalNavigator = modalNavigator;
-
-        // TODO: clean up this code
         _database = database;
-        _database.CreateConnection();
-        List<Models.Entities.Member> members = _database.GetAllData();
-        Debug.WriteLine(members[0].Name);
 
         _navigator.ViewModelStateChanged += Navigator_ViewModelStateChanged;
         _modalNavigator.ViewModelStateChanged += Navigator_ModalStateChanged;
