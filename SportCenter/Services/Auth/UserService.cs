@@ -1,40 +1,34 @@
 ﻿using SportCenter.Models.Entities;
 using SportCenter.Repositories;
 
-namespace SportCenter.Services.Auth
+namespace SportCenter.Services.Auth;
+
+public class UserService(IRepository<User> userRepository) : IUserService
 {
-    public class UserService : IUserService
+    private readonly IRepository<User> _userRepository = userRepository;
+
+    public IEnumerable<User> GetAllUsers()
     {
-        private readonly IRepository<User> userRepository;
+        return _userRepository.GetAll();
+    }
 
-        public UserService(IRepository<User> userRepository)
-        {
-            this.userRepository = userRepository;
-        }
+    public User GetUserById(int id)
+    {
+        return _userRepository.GetById(id);
+    }
 
-        public IEnumerable<User> GetAllUsers()
-        {
-            return userRepository.GetAll();
-        }
+    public void AddUser(User user)
+    {
+        _userRepository.Add(user);
+    }
 
-        public User GetUserById(int id)
-        {
-            return userRepository.GetById(id);
-        }
+    public void UpdateUser(User user)
+    {
+        _userRepository.Update(user);
+    }
 
-        public void AddUser(User user)
-        {
-            userRepository.Add(user);
-        }
-
-        public void UpdateUser(User user)
-        {
-            userRepository.Update(user);
-        }
-
-        public void DeleteUser(User user)
-        {
-            userRepository.Delete(user);
-        }
+    public void DeleteUser(User user)
+    {
+        _userRepository.Delete(user);
     }
 }

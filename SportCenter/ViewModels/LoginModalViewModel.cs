@@ -50,10 +50,10 @@ public sealed class LoginModalViewModel : ViewModelBase
     public ICommand LoginCommand { get; private set; }
 
     private readonly IModalService _modalService;
-    private readonly LoadingModalViewModel _loadingModalViewModel;
     private readonly IUserService _userService;
+    private readonly LoadingModalViewModel _loadingModalViewModel;
 
-    public LoginModalViewModel(IModalService modalService, LoadingModalViewModel loadingModalViewModel, IUserService userService)
+    public LoginModalViewModel(IModalService modalService, IUserService userService, LoadingModalViewModel loadingModalViewModel)
     {
         _modalService = modalService;
         _loadingModalViewModel = loadingModalViewModel;
