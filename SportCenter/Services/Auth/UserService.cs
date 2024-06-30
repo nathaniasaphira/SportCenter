@@ -1,7 +1,7 @@
 ﻿using SportCenter.Models.Entities;
 using SportCenter.Repositories;
 
-namespace SportCenter.Services.Users
+namespace SportCenter.Services.Auth
 {
     public class UserService : IUserService
     {

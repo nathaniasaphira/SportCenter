@@ -1,6 +1,6 @@
 ﻿using SportCenter.Models.Entities;
 
-namespace SportCenter.Services.Users
+namespace SportCenter.Services.Auth
 {
     public interface IUserService
     {

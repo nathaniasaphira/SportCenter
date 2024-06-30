@@ -22,13 +22,11 @@ public sealed class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(INavigator navigator, 
         IViewModelFactory viewModelFactory, 
         IModalService modalService, 
-        ModalNavigator modalNavigator,
-        DatabaseConnection database)
+        ModalNavigator modalNavigator)
     {
         _navigator = navigator;
         _modalService = modalService;
         _modalNavigator = modalNavigator;
-        _database = database;
 
         _navigator.ViewModelStateChanged += Navigator_ViewModelStateChanged;
         _modalNavigator.ViewModelStateChanged += Navigator_ModalStateChanged;

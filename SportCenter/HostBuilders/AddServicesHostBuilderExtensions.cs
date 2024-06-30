@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SportCenter.Services.Auth;
 using SportCenter.Services.Modals;
 using SportCenter.Services.Navigators;
-using SportCenter.Services.Users;
 using SportCenter.ViewModels.Factories;
 
 namespace SportCenter.HostBuilders;

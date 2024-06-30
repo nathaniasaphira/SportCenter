@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using SportCenter.Services.Modals;
 using SportCenter.Services.Navigators;
+using SportCenter.Services.Auth;
 
 namespace SportCenter.ViewModels;
 
@@ -50,11 +51,13 @@ public sealed class LoginModalViewModel : ViewModelBase
 
     private readonly IModalService _modalService;
     private readonly LoadingModalViewModel _loadingModalViewModel;
+    private readonly IUserService _userService;
 
-    public LoginModalViewModel(IModalService modalService, LoadingModalViewModel loadingModalViewModel)
+    public LoginModalViewModel(IModalService modalService, LoadingModalViewModel loadingModalViewModel, IUserService userService)
     {
         _modalService = modalService;
         _loadingModalViewModel = loadingModalViewModel;
+        _userService = userService;
 
         _username = string.Empty;
         _password = string.Empty;
